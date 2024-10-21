@@ -15,7 +15,7 @@ bun dev
 ```
 
 npx prisma migrate dev --name init
-
+https://gradienty.codes/
 
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

@@ -8,92 +8,45 @@ datasource db {
 }
 
 model Member {
+  id         Int          @id @default(autoincrement())
+  name       String
+  education  Education[]
+  experience Experience[]
+  profile    Profile?
+}
+
+model Profile {
   id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  name      String   @db.VarChar(50)
-  surname   String   @db.VarChar(50)
-  mobile    Int?
-  level     Int      @default(0)
-  send      Int      @default(0)
-  success   Int      @default(0)
-  achieve   Int      @default(0)
-  booking   Int      @default(0)
-  client    Int      @default(0)
+  firstname String
+  lastname  String
+  gender    String
+  position  String
+  status    String?  @default("Available")
+  booking   Boolean  @default(false)
+  bookingby String?  @default("so")
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  memberId  Int      @unique
+  member    Member   @relation(fields: [memberId], references: [id])
 }
 
-model Candidate {
-  Id              Int       @id @default(autoincrement())
-  cv              Int?
-  name            String?   @db.VarChar(50)
-  surname         String?   @db.VarChar(50)
-  email           String    @db.VarChar(50)
-  mobile          String
-  position        String    @db.VarChar(50)
-  age             Int?
-  gender          String?   @db.VarChar(10)
-  expect          Int?
-  university1     String?   @db.VarChar(100)
-  major1          String?   @db.VarChar(100)
-  gpa1            Int?
-  university2     String?   @db.VarChar(100)
-  major2          String?   @db.VarChar(100)
-  gpa2            Int?
-  university3     String?   @db.VarChar(100)
-  major3          String?   @db.VarChar(100)
-  gpa3            Int?
-  skill           String?
-  certificate     String?
-  company1        String?
-  from1           DateTime?
-  to1             DateTime?
-  responsibility1 String?
-  leave1          String?
-  company2        String?
-  from2           DateTime?
-  to2             DateTime?
-  responsibility2 String?
-  leave2          String?
-  company3        String?
-  from3           DateTime?
-  to3             DateTime?
-  responsibility3 String?
-  leave3          String?
-  company4        String?
-  from4           DateTime?
-  to4             DateTime?
-  responsibility4 String?
-  leave4          String?
-  company5        String?
-  from5           DateTime?
-  to5             DateTime?
-  responsibility5 String?
-  leave5          String?
-  company6        String?
-  from6           DateTime?
-  to6             DateTime?
-  responsibility6 String?
-  leave6          String?
-  createDate      DateTime  @default(now())
-  updateDate      DateTime?
-  updateBy        String?   @db.VarChar(50)
-  grade           String?   @db.VarChar(10)
-  score           String?   @db.VarChar(50)
-  consent         Boolean   @default(true)
-  type            String?   @db.VarChar(50)
-  status          String?   @db.VarChar(100)
-  comment         String?
-  booking         Boolean?
-  bookingDate     DateTime?
-  bookingBy       String?   @db.VarChar(50)
-  startDate       DateTime?
-  picUrl          String?
+model Education {
+  id         Int    @id @default(autoincrement())
+  degree     String
+  university String
+  major      String
+  gpa        Float
+  year       Int
+  memberId   Int
+  user       Member @relation(fields: [memberId], references: [id])
 }
 
-model Product {
-  name  String
-  price String
-  id    Int    @id @default(autoincrement())
-  item  String
+model Experience {
+  id       Int    @id @default(autoincrement())
+  company  String
+  position String
+  duration Int
+  salary   Float
+  memberId Int
+  user     Member @relation(fields: [memberId], references: [id])
 }

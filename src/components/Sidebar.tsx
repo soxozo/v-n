@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React, { useState } from 'react';
-import Logo from '@/public/logo.svg'
+import Image from 'next/image';
 
 const Navigation: React.FC = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
@@ -12,31 +12,23 @@ const Navigation: React.FC = () => {
   };
   return (
 
-   <><div className="relative bg-gray-50 dark:bg-slate-900 w-screen h-screen pattern">
-       <button className="rounded-md border border-slate-300 p-2.5 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
- 
-  </button>
+   <>
+      <div className="mb-2">
       <button
         onClick={toggleSidebar}
-        className="fixed bottom-4 left-2 z-30 p-2 bg-indigo-500 text-white rounded-md"
+        className="fixed bottom-4 left-2 z-30 px-1 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 hover:border-4 focus:border-4 hover:border-indigo-800 hover:text-indigo-800 focus:border-purple-200 active:border-grey-900 active:text-grey-900 transition-all"
       >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6 shrink-0"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-          </svg>
-        {isSidebarVisible ? 'Hide Sidebar' : 'Show Sidebar'}
+<svg width="25px" height="25px" viewBox="0 0 0.5 0.5" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <path fill="#F35325" d="M0.031 0.031h0.203v0.203H0.031z" />
+    <path fill="#81BC06" d="M0.266 0.031H0.469v0.203H0.266z" />
+    <path fill="#05A6F0" d="M0.031 0.266h0.203V0.469H0.031z" />
+    <path fill="#FFBA08" d="M0.266 0.266H0.469V0.469H0.266z" />
+</svg>
+
+        {isSidebarVisible ? '' : ''}
       </button>
-    </div> 
-    
+      </div>
+
     <nav
         className={`z-10 flex shrink-0 grow-0 justify-around gap-4 border-t border-gray-200 bg-white/50 p-2.5 shadow-lg backdrop-blur-lg dark:border-slate-600/60 dark:bg-slate-800/50 fixed top-2/4 -translate-y-2/4 left-0 min-h-[auto] min-w-[64px] flex-col rounded-lg border transition-transform duration-300 ${
           isSidebarVisible ? 'translate-x-2' : '-translate-x-full'
