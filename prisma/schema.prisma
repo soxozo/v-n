@@ -6,47 +6,19 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
 model Member {
-  id         Int          @id @default(autoincrement())
-  name       String
-  education  Education[]
-  experience Experience[]
-  profile    Profile?
+  id            Int     @id @default(autoincrement())
+  name          String
+  email         String  @unique
+  totalBooking  Int     @default(0)
+  roomsBooked   Room[]  @relation("Booking")
 }
 
-model Profile {
-  id        Int      @id @default(autoincrement())
-  firstname String
-  lastname  String
-  gender    String
-  position  String
-  status    String?  @default("Available")
-  booking   Boolean  @default(false)
-  bookingby String?  @default("so")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  memberId  Int      @unique
-  member    Member   @relation(fields: [memberId], references: [id])
-}
-
-model Education {
-  id         Int    @id @default(autoincrement())
-  degree     String
-  university String
-  major      String
-  gpa        Float
-  year       Int
-  memberId   Int
-  user       Member @relation(fields: [memberId], references: [id])
-}
-
-model Experience {
-  id       Int    @id @default(autoincrement())
-  company  String
-  position String
-  duration Int
-  salary   Float
-  memberId Int
-  user     Member @relation(fields: [memberId], references: [id])
+model Room {
+  id          Int      @id @default(autoincrement())
+  roomNumber  String
+  booking     Boolean  @default(false)
+  bookingBy   Int?
+  bookedAt    DateTime? // เพิ่มฟิลด์นี้เพื่อเก็บเวลาในการจอง
+  member      Member?  @relation("Booking", fields: [bookingBy], references: [id])
 }
