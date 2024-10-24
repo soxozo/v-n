@@ -6,19 +6,64 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model Member {
-  id            Int     @id @default(autoincrement())
-  name          String
-  email         String  @unique
-  totalBooking  Int     @default(0)
-  roomsBooked   Room[]  @relation("Booking")
+  id              Int         @id @default(autoincrement())
+  firstname       String
+  lastname        String
+  email           String      @unique
+  level           Int         @default(1)
+  totalBooking    Int         @default(0)
+  candidateBooked Candidate[] @relation("booking")
 }
 
-model Room {
-  id          Int      @id @default(autoincrement())
-  roomNumber  String
-  booking     Boolean  @default(false)
-  bookingBy   Int?
-  bookedAt    DateTime? // เพิ่มฟิลด์นี้เพื่อเก็บเวลาในการจอง
-  member      Member?  @relation("Booking", fields: [bookingBy], references: [id])
+model Candidate {
+  id         Int          @id @default(autoincrement())
+  name       String
+  surname    String
+  email      String       @unique
+  mobile     String       @unique
+  member     Member?      @relation("booking", fields: [bookingBy], references: [id])
+  booking    Boolean      @default(false)
+  bookingBy  Int?
+  bookedAt   DateTime?
+  status     String       @default("Available")
+  createAt   DateTime     @default(now())
+  profile    Profile?
+  education  Education[]
+  experience Experience[]
+}
+
+model Profile {
+  id          Int        @id @default(autoincrement())
+  gender      String?
+  position    String?
+  picUrl      String?
+  salary      Int?
+  address     String?
+  candidate   Candidate? @relation(fields: [candidateId], references: [id])
+  candidateId Int        @unique
+}
+
+model Education {
+  id          Int        @id @default(autoincrement())
+  university  String?
+  major       String?
+  graduated   Int?
+  gpa         Float?
+  candidate   Candidate? @relation(fields: [candidateId], references: [id])
+  candidateId Int
+}
+
+model Experience {
+  id          Int        @id @default(autoincrement())
+  company     String?
+  position    String?
+  startwork   DateTime?
+  endwork     DateTime?
+  salary      Int?
+  allowance   Int?
+  whyleave    String?
+  candidate   Candidate? @relation(fields: [candidateId], references: [id])
+  candidateId Int
 }

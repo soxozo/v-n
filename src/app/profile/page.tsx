@@ -7,24 +7,24 @@ export default function ProfilePage() {
 
   
   const ITEMS_PER_PAGE = 20;
-  const [profiles, setProfiles] = useState([]);
+  const [candidates, setCandidates] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(profiles.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(candidates.length / ITEMS_PER_PAGE);
 
   useEffect(() => {
-    const fetchProfiles = async () => {
-      const res = await fetch('/api/profiles');
+    const fetchCandidates = async () => {
+      const res = await fetch('/api/candidateview');
       const data = await res.json();
-      setProfiles(data);
+      setCandidates(data);
     };
 
-    fetchProfiles();
+    fetchCandidates();
   }, []);
 
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentProfiles = profiles.slice(startIndex, endIndex);
+  const currentCandidates = candidates.slice(startIndex, endIndex);
 
   const nextPage = () => {
     if (currentPage < totalPages) {
@@ -130,12 +130,13 @@ export default function ProfilePage() {
     
   
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-          {currentProfiles.map((profile) => (
+          {currentCandidates.map((candidate) => (
             <Card
-              key={profile.id}
-              firstname={profile.firstname}
-              lastname={profile.lastname}
-              position={profile.position} />
+              key={candidate.id}
+              name={candidate.name}
+              surname={candidate.surname}
+              email={candidate.email}
+              mobile={candidate.mobile} />
           ))}
         </div>
 
