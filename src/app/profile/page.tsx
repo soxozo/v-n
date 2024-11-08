@@ -1,30 +1,33 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Card from '@/components/Card';
+import CardProfile from '@/components/CardProfile';
+import { Tpersonal } from "@/../types/index"
+import Image from 'next/image';
+import Link from 'next/link';
+
 
 export default function ProfilePage() {
-
-  
   const ITEMS_PER_PAGE = 20;
-  const [candidates, setCandidates] = useState([]);
+
+  const [profiles, setProfiles] = useState<Tpersonal[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(candidates.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(profiles.length / ITEMS_PER_PAGE);
+
 
   useEffect(() => {
-    const fetchCandidates = async () => {
-      const res = await fetch('/api/candidateview');
+    const fetchProfiles = async () => {
+      const res = await fetch('/api/viewprofile');
       const data = await res.json();
-      setCandidates(data);
+      setProfiles(data);
     };
-
-    fetchCandidates();
+    fetchProfiles();
   }, []);
 
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentCandidates = candidates.slice(startIndex, endIndex);
+  const currentProfiles = profiles.slice(startIndex, endIndex);
 
   const nextPage = () => {
     if (currentPage < totalPages) {
@@ -39,15 +42,18 @@ export default function ProfilePage() {
   };
 
   return (
- <><div className="px-4 mx-auto max-w-7xl sm:px-6">
- <div className="relative pt-6 pb-16 sm:pb-24">
-     <nav className="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
+ <><div className="bg-w-50 min-h-screen overflow-x-hidden">
+ <div className="fixed w-full bg-white text-indigo-800 z-50 shadow-md animate-slide-down">
+     <nav className="relative flex items-center shadow-2xl justify-between h-10 md:justify-center" aria-label="Global">
          <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
              <div className="flex items-center justify-between w-full md:w-auto">
-                 <a href="#">
-                     <span className="sr-only">Company Name</span>
-                     <img className="w-auto h-8 sm:h-10" src="https://www.svgrepo.com/show/448244/pack.svg" loading="lazy" width="202" height="40" alt="Company Logo" />
-                 </a>
+                 <Link href="#">
+               <Image className="w-auto h-10 sm-12 m-1"
+               src="/asset/logo.svg" 
+               lt="logo" 
+               width={200} 
+               height={50} />
+                 </Link>
                  <div className="flex items-center -mr-2 md:hidden">
                      <button className="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-50 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-50" type="button" aria-expanded="false">
                          <span className="sr-only">Open main menu</span>
@@ -60,13 +66,13 @@ export default function ProfilePage() {
          </div>
          <div className="hidden md:flex md:space-x-10 list-none">
              <li>
-                 <a href="#" className="text-base font-normal text-gray-500 hover:text-gray-900">Pricing</a>
+                 <a href="#" className="text-base font-normal text-gray-500 hover:text-gray-900">Home</a>
              </li>
              <li>
-                 <a href="#" className="text-base font-normal text-gray-500 hover:text-gray-900">Gallery</a>
+                 <a href="#" className="text-base font-normal text-gray-500 hover:text-gray-900">Setting</a>
              </li>
              <li>
-                 <a href="#" className="text-base font-normal text-gray-500 hover:text-gray-900" target="_blank">Blog</a>
+                 <a href="#" className="text-base font-normal text-gray-500 hover:text-gray-900" target="_blank">Logout</a>
              </li>
          </div>
          <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
@@ -77,51 +83,51 @@ export default function ProfilePage() {
              </div>
          </div>
      </nav>
-     
  </div>
- <div className='bg-sky-100 m-2'>
- <div className="mx-auto px-4 md:px-8">
-            <div className="items-start justify-between py-4 border-b md:flex">
-                <div>
-                    <h3 className="text-gray-800 text-2xl font-bold">
-                        Analytics
-                    </h3>
-                </div>
+ <div className="bg-white shadow-teal-300 shadow-md rounded-lg dark:text-gray-300 flex justify-center items-center w-screen mt-16">
+ <div className="w-full max-w-screen-xl px-4">
+            <div className="items-start justify-between border-b md:flex">
+    <div>
+  <div className="flex items-center space-x-2 rounded-lg neo-shadow">
+    <div className="w-10 h-10 rounded-full neo-inset flex items-center justify-center">
+      <span className="text-xl">👤</span>
+    </div>
+    <div>
+      <h2 className="font-semibold">John Doe</h2>
+      <p className="text-sm text-gray-600">Hello, how are you?</p>
+    </div>
+  </div>
+</div>
 
-                <div className="relative mb-4 flex flex-wrap items-stretch">
-    <input
-        type="search"
-        className="relative m-0 -mr-0.5 block min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-        placeholder="Search"
-        aria-label="Search"
-        aria-describedby="button-addon3" 
-    />
+             
 
-    {/* Search button */}
-    <button
-        className="relative z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
-        type="button"
-        id="button-addon3"
-        data-te-ripple-init
-    >
-        Search
+
+<div id="search-bar" className="w-120 bg-white rounded-md shadow-lg z-10">
+  <form className="flex items-center justify-center p-2">
+    <input type="text" placeholder="Search here" className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent" />
+    <button type="submit" className="bg-gray-800 text-white rounded-md px-4 py-1 ml-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+      Search
     </button>
+  </form>
 </div>
 
 
-                <div className="items-center gap-x-3 mt-6 md:mt-0 sm:flex">
-                    <a
-                        href="javascript:void(0)"
-                        className="block px-4 py-2 text-center text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
-                    >
-                        Browse reports
-                    </a>
-                    <a
-                        href="javascript:void(0)"
-                        className="block px-4 py-2 mt-3 text-center text-gray-700 duration-150 font-medium rounded-lg border hover:bg-gray-50 active:bg-gray-100 sm:mt-0 md:text-sm"
-                    >
-                        Engagement
-                    </a>
+
+
+                <div className="items-center gap-x-4 mt-6 md:mt-0 sm:flex">
+      
+              <button type="button" className="max-w-[150px] py-1 px-4 flex justify-center items-center border-b border-green-800 bg-white hover:bg-emerald-300 focus:ring-emerald-500 focus:ring-offset-red-200 text-emerald-500 w-full transition ease-in duration-200 text-center text-base font-tin shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">
+<Image className="mr-2" 
+ src="/asset/addprofile.svg" alt="upload" width={20} height={20}/>
+  New 
+</button>
+
+
+<button type="button" className="max-w-[150px] py-1 px-2 flex justify-center items-center border-b border-sky-900 bg-white hover:bg-blue-400 focus:ring-emerald-500 focus:sky-offset-red-200 text-cyan-900 w-full transition ease-in duration-200 text-center text-base font-thin shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">
+<Image className="mr-2" 
+ src="/asset/search.svg" alt="upload" width={20} height={20}/>
+ Search 
+</button>
                 </div>
             </div>
         </div>
@@ -130,13 +136,18 @@ export default function ProfilePage() {
     
   
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-          {currentCandidates.map((candidate) => (
-            <Card
-              key={candidate.id}
-              name={candidate.name}
-              surname={candidate.surname}
-              email={candidate.email}
-              mobile={candidate.mobile} />
+          {currentProfiles.map((profile) => (
+            <CardProfile
+              key={profile.id}
+              firstname={profile.firstname}
+              lastname={profile.lastname}
+              bookign={profile.bookign}
+              imgAddress={profile.imgAddress}
+              position={profile.position}
+              age={profile.age}
+              status={profile.status}
+              comment={profile.comment}
+              />
           ))}
         </div>
 

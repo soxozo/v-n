@@ -3,67 +3,225 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-model Member {
-  id              Int         @id @default(autoincrement())
-  firstname       String
-  lastname        String
-  email           String      @unique
-  level           Int         @default(1)
-  totalBooking    Int         @default(0)
-  candidateBooked Candidate[] @relation("booking")
+
+model Pro {
+  id         Int      @id @default(autoincrement())
+  firstname  String   
+  lastname   String
+  mobile     String   @unique
+  email      String   @unique
+  birthdate   String?
+  location   String
+  position   String
+  gender     String
+  imgAddress  String?
+  booking    Boolean   @default(false)
+  age        Int?
+  status     String    @default("Available")
+  createAt   DateTime?     @default(now())
 }
 
-model Candidate {
-  id         Int          @id @default(autoincrement())
-  name       String
-  surname    String
-  email      String       @unique
-  mobile     String       @unique
-  member     Member?      @relation("booking", fields: [bookingBy], references: [id])
-  booking    Boolean      @default(false)
-  bookingBy  Int?
-  bookedAt   DateTime?
-  status     String       @default("Available")
-  createAt   DateTime     @default(now())
-  profile    Profile?
-  education  Education[]
-  experience Experience[]
-}
+
 
 model Profile {
-  id          Int        @id @default(autoincrement())
-  gender      String?
-  position    String?
-  picUrl      String?
-  salary      Int?
-  address     String?
-  candidate   Candidate? @relation(fields: [candidateId], references: [id])
-  candidateId Int        @unique
+  id         Int      @id @default(autoincrement())
+  firstname  String   
+  lastname   String
+  mobile     String   @unique
+  email      String   @unique
+  birthdate   String?
+  location   String
+  position   String
+  gender     String
+  imgAddress  String?
+  booking    Boolean   @default(false)
+  age        Int?
+  status     String    @default("Available")
+  createAt   DateTime?     @default(now())
+  comment    String?
 }
 
-model Education {
-  id          Int        @id @default(autoincrement())
-  university  String?
-  major       String?
-  graduated   Int?
-  gpa         Float?
-  candidate   Candidate? @relation(fields: [candidateId], references: [id])
-  candidateId Int
-}
 
-model Experience {
-  id          Int        @id @default(autoincrement())
-  company     String?
-  position    String?
-  startwork   DateTime?
-  endwork     DateTime?
-  salary      Int?
-  allowance   Int?
-  whyleave    String?
-  candidate   Candidate? @relation(fields: [candidateId], references: [id])
-  candidateId Int
+
+
+
+model Candidate {
+  id    Int     @id @default(autoincrement())
+  name    String
+  surname   String
+  booking   Boolean   @default(false)
+  picUrl    String?
+  position  String
+  age       Int?
+  status    String    @default("available")
 }
+  
+// model Member {
+//   id              Int         @id @default(autoincrement())
+//   firstname       String
+//   lastname        String
+//   email           String      @unique
+//   level           Int         @default(1)
+//   totalBooking    Int         @default(0)
+//   candidateBooked Candidate[] @relation("booking")
+// }
+
+// model Candidate {
+//   id         Int          @id @default(autoincrement())
+//   name       String
+//   surname    String
+//   email      String       @unique
+//   mobile     String       @unique
+//   booking    Boolean      @default(false)
+//   bookingBy  Int?
+//   bookedAt   DateTime?
+//   status     String       @default("Available")
+//   createAt   DateTime     @default(now())
+//   member     Member?      @relation("booking", fields: [bookingBy], references: [id])
+//   education  Education[]
+//   experience Experience[]
+//   profile    Profile?
+// }
+
+// model Profile {
+//   id          Int       @id @default(autoincrement())
+//   gender      String?
+//   position    String?
+//   picUrl      String?
+//   candidateId Int       @unique
+//   address     String?
+//   salary      Int?
+//   age         Int?
+//   candidate   Candidate @relation(fields: [candidateId], references: [id])
+// }
+
+// model Education {
+//   id          Int       @id @default(autoincrement())
+//   university  String?
+//   major       String?
+//   graduated   Int?
+//   gpa         Float?
+//   candidateId Int
+//   candidate   Candidate @relation(fields: [candidateId], references: [id])
+// }
+
+// model Experience {
+//   id          Int       @id @default(autoincrement())
+//   company     String?
+//   position    String?
+//   startwork   DateTime?
+//   endwork     DateTime?
+//   salary      Int?
+//   allowance   Int?
+//   whyleave    String?
+//   candidateId Int
+//   candidate   Candidate @relation(fields: [candidateId], references: [id])
+// }
+
+
+// model New3 {
+//   id        Int      @id @default(autoincrement())
+//   firstname String
+//   lastname  String
+//   mobile    String   @unique
+//   email     String   @unique
+//   location  String
+//   position  String
+//   birthdate  String?
+//   gender    String
+//   imgUrl    String?
+// }
+
+
+// model Student {
+//   id        Int    @id @default(autoincrement())
+//   firstname String
+//   lastname  String
+//   mobile    String @unique
+//   email     String @unique
+//   age       String
+//   birthdate  String?
+//   imgUrl    String
+// }
+
+// model Make {
+//   id        Int    @id @default(autoincrement())
+//   firstname String
+//   lastname  String
+//   gender    String?
+//   mobile    String @unique
+//   email     String @unique
+//   position  String?
+//   fileUrl   String
+// }
+
+// model Hee {
+//   id      Int    @id @default(autoincrement())
+//   name    String
+//   surname   String
+//   email     String  @unique
+//   mobile    String  @unique
+//   gender    String
+//   position  String
+//   age       Int
+//   birthdate  String?
+//   fileUrl   String?
+// }
+
+// model Hum {
+//   id      Int    @id @default(autoincrement())
+//   firstname    String
+//   lastname   String
+//   email     String  @unique
+//   mobile    String  @unique
+//   gender    String
+//   position  String
+//   age       Int
+//   birthdate  String?
+//   fileUrl   String?
+// }
+
+// model Case {
+//   id         Int     @id @default(autoincrement())
+//   firstname  String
+//   lastname   String
+//   mobile     String  @unique
+//   imgAddress String
+// }
+
+// model Ready {
+//   id          Int     @id @default(autoincrement())
+//   firstname   String
+//   lastname    String
+//   mobile      String   @unique
+//   email       String   @unique
+//   position    String
+//   location    String
+//   gender      String
+//   age         Int?
+//   imgAddress  String?
+// }
+
+
+// Member และ Candidate:
+
+// ในโมเดล Member มีการประกาศความสัมพันธ์กับ Candidate โดยใช้คำสั่ง @relation("booking") โดยที่ candidateBooked เป็นอาเรย์ของ Candidate ซึ่งหมายความว่า หนึ่งสมาชิก (Member) สามารถทำการจองได้หลายคน (Candidate) นอกจากนี้ ในโมเดล Candidate มี bookingBy ซึ่งเก็บ Int? เพื่อชี้ไปยัง id ของ Member ที่ทำการจอง ดังนั้น Candidate แต่ละคนสามารถถูกจองโดยสมาชิกเพียงคนเดียว
+// Candidate และ Profile:
+
+// โมเดล Candidate มีความสัมพันธ์หนึ่งต่อหนึ่งกับโมเดล Profile โดยใช้คำสั่ง @relation โดยที่ candidateId เป็นคีย์ที่ใช้ในการเชื่อมโยง ซึ่งหมายความว่า แต่ละ Candidate สามารถมี Profile ได้เพียงคนเดียว และแต่ละ Profile ต้องมี candidateId ที่เป็นเอกลักษณ์ ซึ่งเชื่อมโยงไปยัง Candidate
+// Candidate และ Education:
+
+// โมเดล Candidate มีความสัมพันธ์หนึ่งต่อหลาย (one-to-many) กับโมเดล Education โดยที่ candidateId ในโมเดล Education จะชี้ไปยัง id ของ Candidate หมายความว่า Candidate หนึ่งคนสามารถมีข้อมูลการศึกษาหลายรายการ
+// Candidate และ Experience:
+
+// คล้ายกับ Education โมเดล Candidate ยังมีความสัมพันธ์หนึ่งต่อหลายกับโมเดล Experience โดยที่ candidateId ในโมเดล Experience จะชี้ไปยัง id ของ Candidate หมายความว่า Candidate หนึ่งคนสามารถมีข้อมูลประสบการณ์การทำงานได้หลายรายการ
+// สรุป:
+// Member สามารถจอง Candidate ได้หลายคน (ความสัมพันธ์ 1
+// )
+// Candidate มี Profile ที่สัมพันธ์กันแบบ 1:1
+// Candidate สามารถมีข้อมูลการศึกษาและประสบการณ์การทำงานหลายรายการ (ความสัมพันธ์ 1
+// กับทั้งสองโมเดล)
