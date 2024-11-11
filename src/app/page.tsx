@@ -1,9 +1,9 @@
-import CreateProfilesForm from '@/components/Form_createprofiles';
+import ProfilePage from '@/components/Table3';
 
 const Register = () => {
   return (
     <div>
-      <CreateProfilesForm />
+      <ProfilePage />
     </div>
   );
 };

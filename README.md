@@ -18,6 +18,18 @@ bun dev
 
 npx prisma migrate dev --name init
 https://gradienty.codes/
+https://play.tailwindcss.com/XVZqgdSXN4
+https://tailwindui.com/plus/img/beams-home@95.jpg
+https://play.tailwindcss.com/XVZqgdSXN4
+https://codepen.io/daddasoft/pen/jOvvYyQ
+https://uiverse.io/csozidev/pretty-snail-69
+https://uiverse.io/AKAspidey01/jolly-tiger-60
+https://uiverse.io/Cybercom682/little-owl-63
+https://uiverse.io/Cherie05/yellow-bobcat-58
+https://uiverse.io/Spacious74/plastic-bulldog-78
+https://uiverse.io/Shubh0408/clever-cobra-74
+https://www.codewithfaraz.com/content/174/how-to-create-a-search-bar-using-tailwind-css-step-by-step-guide
+https://tailwindflex.com/@arya/feature-icon-grid
 
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

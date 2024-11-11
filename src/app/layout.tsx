@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import { Abel } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/Sidebar";
+
+const abel = Abel({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,7 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+  
+     <html lang="en" className={abel.className}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       ><Navigation />
