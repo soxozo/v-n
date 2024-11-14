@@ -4,6 +4,8 @@ import { useState } from 'react';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
+import { FiSend } from "react-icons/fi";
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -15,11 +17,11 @@ const Navbar = () => {
           </div>
   
       <div className="container mx-auto my-5 p-5">
-  <div className="md:flex no-wrap md:-mx-2 ">
+  <div className="md:flex no-wrap md:-mx-2">
     {/* Left Side */}
     <div className="w-full md:w-4/12 md:mx-2">
       {/* Profile Card */}
-      <div className="bg-white p-2 border-t-8 border-sky-500 rounded-md">
+      <div className="bg-slate-200 p-2 border-t-8 border-sky-500 rounded-xl shadow-slate-300 shadow-inner">
         <div className="flex flex-col items-center gap-4 image overflow-hidden">
 
         <p className="text-xl font-bold m-2">
@@ -40,18 +42,18 @@ const Navbar = () => {
     </div>
 
     <div className="text-gray-400 gap-4 mb-2 flex justify-around">
-    <button className="bg-slate-100 text-gray-800 text-xs font-extralight rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md p-2 inline-flex items-center">
+    <button className="bg-slate-100 text-gray-800 text-xs rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md p-2 inline-flex items-center">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
        <path fill="currentcolor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
       </svg>
       <span>Delete</span>
     </button>
-    <button className="bg-slate-100 text-gray-800 text-xs font-extralight rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md p-2 inline-flex items-center">
+    <button className="bg-slate-100 text-gray-800 text-xs rounded border-b-2 border-green-500 gap-2 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md p-2 inline-flex items-center">
      
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-        <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-      </svg>
-      <span>Submit</span>
+  
+     <span>  Submit </span> <FiSend />
+
+      
     </button>
     </div>
 
@@ -68,12 +70,13 @@ const Navbar = () => {
 
             <label>
             <textarea
-            className="h-20 w-full mr-4 bg-white text-sm font-extralight rounded-sm border border-none mb-6" 
+            className="h-20 w-full mr-4 bg-white text-sm rounded-sm border border-none mb-6" 
             placeholder="No data of Summary">
             </textarea> 
             </label>
 
-            <div className="w-full bg-slate-200 shadow-inner-slate-400 rounded-xl border-2 border-gray-100 overflow-hidden flex flex-col items-start px-4 py-4 gap-4">
+            <div className="w-full shadow-2xl rounded-xl 
+            flex flex-col items-start px-4 py-4 gap-4 shadow-blue-500/40">
 
 
             <div className="flex flex-row items-center w-full justify-between">
@@ -93,7 +96,7 @@ const Navbar = () => {
   title="cvno"
     name="cvno"
     defaultValue={10001}
-    className="text-gray-800 bg-slate-200 text-right border border-gray-300 rounded-lg px-2 py-1 flex-grow"
+    className="text-gray-800 text-right border-none rounded-lg px-2 py-1 flex-grow"
   />
 </div>
 
@@ -104,7 +107,7 @@ const Navbar = () => {
   title="ีupdate"
     name="update"
     defaultValue={10001}
-    className="text-gray-800 bg-slate-200 text-right border border-gray-300 rounded-lg px-2 py-1 flex-grow"
+    className="text-gray-800 text-right border-none rounded-lg px-2 py-1 flex-grow"
   />
 </div>
 
@@ -117,20 +120,56 @@ const Navbar = () => {
             </div>
         </div>
       </div>
-      {/* End of profile card */}
-      <div className="my-4" />
-
-      <div className="bg-white p-3 hover:shadow border-t-8 border-sky-500 rounded-md">
-        <div className="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
+      <div className="w-full mt-2">
+      <div className="bg-slate-200 p-2 border-t-8 border-sky-500 rounded-xl shadow-zine-400 shadow-inner"/>
+    
+        <div className="flex items-center px-6 space-x-3 font-semibold text-gray-900 text-xl leading-8">
   <Image src='/asset/comment.svg'
         alt='comment'
         width={24}
         height={24}
         />
-    <h1 className='tracking-wide'>History</h1> 
+  <h1 className='tracking-wide'>History</h1> 
+
         </div>
-        <div className="grid grid-cols-3">
-       
+
+        <div className="grid grid-cols-1 shadow-inner rounded-xl border-4 border-zine-500">
+             <div className="w-full flex flex-col items-start px-2 py-2 gap-4 shadow-blue-500/40">
+
+
+            <div className="flex flex-row items-center w-full justify-between">
+  <label htmlFor="status" className="text-gray-800">Status</label>
+  
+  <select className="max-w-[280px] bg-transparent">
+    <option className="bg-green-500 py-1 px-2" value="course1">Course title</option>
+    <option className="bg-blue-500 py-1 px-2 "value="course2">Course title</option>
+    <option className="bg-orange-500 py-1 px-2" value="course3">Course title</option>
+  </select>
+</div>
+
+
+<div className="flex flex-row items-center w-full">
+  <label htmlFor="cvno" className="text-gray-800">CV No</label>
+  <input
+  title="cvno"
+    name="cvno"
+    defaultValue={10001}
+    className="text-gray-800 text-right border-none rounded-lg px-2 py-1 flex-grow"
+  />
+</div>
+
+
+<div className="flex flex-row items-center w-full">
+  <label htmlFor="update" className="text-gray-800">Update</label>
+  <input
+  title="ีupdate"
+    name="update"
+    defaultValue={10001}
+    className="text-gray-800 text-right border-none rounded-lg px-2 py-1 flex-grow"
+  />
+</div>
+
+</div>   
         </div>
       </div>
       {/* End of friends card */}
