@@ -4,7 +4,10 @@ import { useState } from 'react';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
-import { FiSend } from "react-icons/fi";
+import { FcMenu } from "react-icons/fc";
+import { FcWikipedia } from "react-icons/fc";
+
+
 
 
 const Navbar = () => {
@@ -51,37 +54,33 @@ const Navbar = () => {
     <button className="bg-slate-100 text-gray-800 text-xs rounded border-b-2 border-green-500 gap-2 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md p-2 inline-flex items-center">
      
   
-     <span>  Submit </span> <FiSend />
+     <span>  Submit </span> 
 
       
     </button>
     </div>
 
     <div className="bg-white p-3 w-full">
-            <div className="flex items-center space-x-2 text-lg font-semibold text-gray-900 leading-8 mb-6">
-                <Image
-                src='asset/sum.svg'
-                alt='sum'
-                width={24}
-                height={24}
-                />
-            <h1 className='tracking-wide'>Summary</h1> 
-            </div>
+    <div className="flex items-center gap-2 text-gray-900 leading-8 font-semibold">
+    <FcMenu size={24} />
+    <h1 className="tracking-wide">Summary</h1>
+</div>
 
             <label>
             <textarea
-            className="h-20 w-full mr-4 bg-white text-sm rounded-sm border border-none mb-6" 
+            className="h-20 w-full bg-white text-md rounded-sm border border-none my-2" 
             placeholder="No data of Summary">
             </textarea> 
             </label>
-            <div className="grid grid-cols-1 bg-slate-50 shadow-inner rounded-xl border-2 border-inner shadow-zinc-500/49 shadow-innerfirst-line:border-zine-500" >
-             <div className="w-full flex flex-col items-start px-2 py-2 gap-4 shadow-blue-500/40">
+            <div className="flex items-center justify-start rounded-xl border-2 border-inner shadow-zinc-500/49 shadow-inner first-line:border-zine-500" >
+             <div className="w-full flex flex-col shadow-blue-500/40 leading-8 text-sm md:text-sm">
+             
 
+            <div className='flex items-center justify-between'>
 
-            <div className="flex flex-row items-center w-full justify-between">
-  <label htmlFor="status" className="text-gray-800">Status</label>
+<label className="text-gray-800">Status</label>
   
-  <select className="max-w-[280px] bg-transparent">
+  <select>
     <option className="bg-green-500 py-1 px-2" value="course1">Course title</option>
     <option className="bg-blue-500 py-1 px-2 "value="course2">Course title</option>
     <option className="bg-orange-500 py-1 px-2" value="course3">Course title</option>
@@ -89,26 +88,17 @@ const Navbar = () => {
 </div>
 
 
-<div className="flex flex-row items-center w-full">
-  <label htmlFor="cvno" className="text-gray-800">CV No</label>
-  <input
-  title="cvno"
-    name="cvno"
-    defaultValue={10001}
-    className="text-gray-800 bg-transparent text-right border-none rounded-lg px-2 py-1 flex-grow"
-  />
+<div className="flex flex-row justify-between w-full">
+<span className="text-gray-800">Code</span>
+<span className="text-gray-800 bg-transparent border-none rounded-lg">10001</span>
+</div>
+
+<div className="flex flex-row justify-between w-full">
+<span className="text-gray-800">Update</span>
+<span className="text-gray-800 bg-transparent border-none rounded-lg">2024 Nov 12</span>
 </div>
 
 
-<div className="flex flex-row bg-transparent overflow-hidden w-full">
-  <label htmlFor="update" className="text-gray-800">Update</label>
-  <input
-  title="ีupdate"
-    name="update"
-    defaultValue={10001}
-    className="text-gray-800 text-right border-none rounded-lg px-2 py-1 flex-grow"
-  />
-  </div>
 </div>
 
 </div>
@@ -119,18 +109,14 @@ const Navbar = () => {
       <div className="bg-white mt-2 p-2 border-t-8 border-sky-500 rounded-xl shadow-zine-400 shadow-inner">
 
    
-        <div className="flex items-center px-6 space-x-3 font-semibold text-gray-900 text-xl leading-8">
-  
-  <Image src='/asset/comment.svg'
-        alt='comment'
-        width={24}
-        height={24}
-        />
-  <h2 className='tracking-wide'>History</h2> 
+      <div className="flex items-center gap-2 text-gray-900 leading-8 font-semibold">
+        <FcWikipedia size={28} />
+        <h1 className="tracking-wide">History</h1>
+
         </div>
 
         <div className="grid grid-cols-1 bg-slate-50 shadow-inner rounded-xl border-2 border-inner shadow-zinc-500/49 shadow-innerfirst-line:border-zine-500" >
-             <div className="w-full flex flex-col items-start px-2 py-2 gap-4 shadow-blue-500/40">
+             <div className="w-full flex flex-col items-start shadow-blue-500/40 text-xs decoration-transparent">
 
 
             <div className="flex flex-row items-center w-full justify-between">
@@ -167,17 +153,16 @@ const Navbar = () => {
 </div>
   </div>
       </div>
-      {/* End of friends card */}
     </div>
     {/* Right Side */}
     <div className="w-full md:w-9/12 mx-2">
-      {/* Profile tab */}
+ 
      
       <div className="bg-white shadow-sm rounded-sm">
     
       <div className="w-full bg-white mx-auto">
-  <div className="px-4">
-    <nav className="flex flex-wrap gap-4">
+  <div className="px-4 bg-gradient-to-tl from-blue-500 via-teal-300 to-sky-500">
+    <nav className="flex flex-wrap gap-4 bg-gradient-to-bl from-blue-500 via-blue-900 to-sky-600 opacity-50">
       <a
         href="#"
         className="inline-flex whitespace-nowrap border-b-2 border-transparent py-2 px-3 text-sm font-medium text-white transition-all duration-200 ease-in-out hover:border-b-purple-600 hover:text-purple-600"
