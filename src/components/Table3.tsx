@@ -21,7 +21,7 @@ const Navbar = () => {
     {/* Left Side */}
     <div className="w-full md:w-4/12 md:mx-2">
       {/* Profile Card */}
-      <div className="bg-slate-200 p-2 border-t-8 border-sky-500 rounded-xl shadow-slate-300 shadow-inner">
+      <div className="bg-white p-2 border-t-8 border-sky-500 rounded-xl shadow-slate-300 shadow-inner">
         <div className="flex flex-col items-center gap-4 image overflow-hidden">
 
         <p className="text-xl font-bold m-2">
@@ -74,66 +74,7 @@ const Navbar = () => {
             placeholder="No data of Summary">
             </textarea> 
             </label>
-
-            <div className="w-full shadow-2xl rounded-xl 
-            flex flex-col items-start px-4 py-4 gap-4 shadow-blue-500/40">
-
-
-            <div className="flex flex-row items-center w-full justify-between">
-  <label htmlFor="status" className="text-gray-800">Status</label>
-  
-  <select className="max-w-[280px] bg-transparent">
-    <option className="bg-green-500 py-1 px-2" value="course1">Course title</option>
-    <option className="bg-blue-500 py-1 px-2 "value="course2">Course title</option>
-    <option className="bg-orange-500 py-1 px-2" value="course3">Course title</option>
-  </select>
-</div>
-
-
-<div className="flex flex-row items-center w-full">
-  <label htmlFor="cvno" className="text-gray-800">CV No</label>
-  <input
-  title="cvno"
-    name="cvno"
-    defaultValue={10001}
-    className="text-gray-800 text-right border-none rounded-lg px-2 py-1 flex-grow"
-  />
-</div>
-
-
-<div className="flex flex-row items-center w-full">
-  <label htmlFor="update" className="text-gray-800">Update</label>
-  <input
-  title="ีupdate"
-    name="update"
-    defaultValue={10001}
-    className="text-gray-800 text-right border-none rounded-lg px-2 py-1 flex-grow"
-  />
-</div>
-
-</div>   
-
-
-
-
-         
-            </div>
-        </div>
-      </div>
-      <div className="w-full mt-2">
-      <div className="bg-slate-200 p-2 border-t-8 border-sky-500 rounded-xl shadow-zine-400 shadow-inner"/>
-    
-        <div className="flex items-center px-6 space-x-3 font-semibold text-gray-900 text-xl leading-8">
-  <Image src='/asset/comment.svg'
-        alt='comment'
-        width={24}
-        height={24}
-        />
-  <h1 className='tracking-wide'>History</h1> 
-
-        </div>
-
-        <div className="grid grid-cols-1 shadow-inner rounded-xl border-4 border-zine-500">
+            <div className="grid grid-cols-1 bg-slate-50 shadow-inner rounded-xl border-2 border-inner shadow-zinc-500/49 shadow-innerfirst-line:border-zine-500" >
              <div className="w-full flex flex-col items-start px-2 py-2 gap-4 shadow-blue-500/40">
 
 
@@ -154,12 +95,12 @@ const Navbar = () => {
   title="cvno"
     name="cvno"
     defaultValue={10001}
-    className="text-gray-800 text-right border-none rounded-lg px-2 py-1 flex-grow"
+    className="text-gray-800 bg-transparent text-right border-none rounded-lg px-2 py-1 flex-grow"
   />
 </div>
 
 
-<div className="flex flex-row items-center w-full">
+<div className="flex flex-row bg-transparent overflow-hidden w-full">
   <label htmlFor="update" className="text-gray-800">Update</label>
   <input
   title="ีupdate"
@@ -167,10 +108,64 @@ const Navbar = () => {
     defaultValue={10001}
     className="text-gray-800 text-right border-none rounded-lg px-2 py-1 flex-grow"
   />
+  </div>
 </div>
 
-</div>   
+</div>
+
+            </div>
         </div>
+      </div>
+      <div className="bg-white mt-2 p-2 border-t-8 border-sky-500 rounded-xl shadow-zine-400 shadow-inner">
+
+   
+        <div className="flex items-center px-6 space-x-3 font-semibold text-gray-900 text-xl leading-8">
+  
+  <Image src='/asset/comment.svg'
+        alt='comment'
+        width={24}
+        height={24}
+        />
+  <h2 className='tracking-wide'>History</h2> 
+        </div>
+
+        <div className="grid grid-cols-1 bg-slate-50 shadow-inner rounded-xl border-2 border-inner shadow-zinc-500/49 shadow-innerfirst-line:border-zine-500" >
+             <div className="w-full flex flex-col items-start px-2 py-2 gap-4 shadow-blue-500/40">
+
+
+            <div className="flex flex-row items-center w-full justify-between">
+  <label htmlFor="status" className="text-gray-800">Status</label>
+  
+  <select className="max-w-[280px] bg-transparent">
+    <option className="bg-green-500 py-1 px-2" value="course1">Course title</option>
+    <option className="bg-blue-500 py-1 px-2 "value="course2">Course title</option>
+    <option className="bg-orange-500 py-1 px-2" value="course3">Course title</option>
+  </select>
+</div>
+
+
+<div className="flex flex-row items-center w-full">
+  <label htmlFor="cvno" className="text-gray-800">CV No</label>
+  <input
+  title="cvno"
+    name="cvno"
+    defaultValue={10001}
+    className="text-gray-800 bg-transparent text-right border-none rounded-lg px-2 py-1 flex-grow"
+  />
+</div>
+
+
+<div className="flex flex-row bg-transparent overflow-hidden w-full">
+  <label htmlFor="update" className="text-gray-800">Update</label>
+  <input
+  title="ีupdate"
+    name="update"
+    defaultValue={10001}
+    className="text-gray-800 text-right border-none rounded-lg px-2 py-1 flex-grow"
+  />
+  </div>
+</div>
+  </div>
       </div>
       {/* End of friends card */}
     </div>
