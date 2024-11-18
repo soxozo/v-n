@@ -4,7 +4,7 @@ import { useState } from 'react';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
-import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation } from "react-icons/fc";
+import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcDiploma1 } from "react-icons/fc";
 
 const ToggleEditInputFields = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -186,36 +186,36 @@ const ToggleEditInputFields = () => {
       <div className="bg-white shadow-sm rounded-sm">
     
       <div className="w-full bg-white mx-auto">
-  <div className="px-4 bg-transparent m-3">
-    <div className="flex flex-wrap gap-6 bg-gradient-to-tl from-sky-500 via-cyan-500 to-blue-500 p-2 rounded-xl">
+  <div className="px-2 bg-transparent">
+    <div className="flex flex-wrap gap-6 bg-gradient-to-tl from-sky-500 via-cyan-500 to-blue-500 p-2 rounded-xl font-light justify-around">
       <Link
         href="#"
-        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md font-semibold text-white transition-all duration-200 
-        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:translate-y-2">
+        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
+        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:-translate-y-2">
         Personal
       </Link>
       <Link
         href="#"
-        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md font-semibold text-white transition-all duration-200 
-        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:translate-y-2">
+        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
+        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:-translate-y-2">
         Experience
       </Link>
       <Link
         href="#"
-        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md font-semibold text-white transition-all duration-200 
-        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:translate-y-2">
+        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
+        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:-translate-y-2">
         Test
       </Link>
       <Link
         href="#"
-        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md font-semibold text-white transition-all duration-200 
-        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:translate-y-2">
+        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
+        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:-translate-y-2">
         File
       </Link>
       <Link
         href="#"
-        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md font-semibold text-white transition-all duration-200 
-        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:translate-y-2">
+        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
+        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:-translate-y-2">
         Email
       </Link>
 
@@ -273,7 +273,7 @@ title="toggle"
   </div>
 </div>
         <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
-          <span clas="text-green-500">
+          <span className="text-green-500">
           <FcVoicePresentation className="w-8 h-8 m-2" />
           </span>
           <span className="tracking-wide">
@@ -282,261 +282,230 @@ title="toggle"
    
         </div>
         <div className="text-gray-700">
-        <div className="grid grid-cols-2">
-      <div className="flex items-center p-3 w-full">
+  <div className="grid grid-cols-1 md:grid-cols-2 mx-2">
+    <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
         <label className="font-semibold">First Name</label>
         <input
           name="firstname"
           title="firstname"
-          className="text-right"
+          className="text-right flex flex-grow"
           defaultValue=""
           readOnly={!isEditMode}
           onBlur={handleFocusOut}
         />
       </div>
-      <div className="flex items-center p-3 w-full">
-        <label className="font-semibold">Last Name</label>
+      <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+      <label className="font-semibold">Last Name</label>
         <input
           name="  lastname"
           title="lastname"
-         className="text-right"
-          defaultValue="Femael"
+         className="text-right flex flex-grow"
+          defaultValue=""
           readOnly={!isEditMode}
           onBlur={handleFocusOut}
         />
       </div>
-      <div className="flex items-center p-3 w-full">
+      <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
     <label className="font-semibold">Position</label>
     <input
       name="position"
       title="position"
-      className="text-right"
+      className="text-right flex flex-grow"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
     />
   </div>
-  <div className="flex items-center p-3 w-full">
-    <label className="font-semibold">CV No.</label>
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+  <label className="font-semibold">CV No.</label>
     <input
       name="cvno"
       title="cvno"
-     className="text-right"
-      defaultValue="Femael"
+     className="text-right flex flex-grow"
+      defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
     />
   </div>
-  <div className="flex items-center p-3 w-full">
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
     <label className="font-semibold">Status</label>
     <input
       name="status"
       title="status"
-      className="text-right"
+      className="text-right flex flex-grow"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
     />
   </div>
-  <div className="flex items-center p-3 w-full">
-    <label className="font-semibold">Consent</label>
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+  <label className="font-semibold">Consent</label>
     <input
       name="consent"
       title="consent"
-     className="text-right"
-      defaultValue="Femael"
+     className="text-right flex flex-grow"
+      defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
     />
   </div>
-  <div className="flex items-center p-3 w-full">
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
     <label className="font-semibold">Email</label>
     <input
       name="email"
       title="email"
-      className="text-right"
+      className="text-right flex flex-grow"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
     />
   </div>
-  <div className="flex items-center p-3 w-full">
-    <label className="ดont-semibold">Age</label>
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+  <label className="font-semibold">Age</label>
     <input
       name="age"
       title="age"
-     className="text-right"
-      defaultValue="Femael"
-      readOnly={!isEditMode}
-      onBlur={handleFocusOut}
-    />
-  </div>
-  <div className="flex items-center p-3 w-full">
-    
-    <label className="font-semibold">Birthdate</label>
-    <input
-      name="birthdate"
-      title="status"
-      className="text-right"
+     className="text-right flex flex-grow"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
     />
   </div>
-  <div className="flex items-center p-3 w-full">
-    <label className="font-semibold">Address</label>
-    <input
-      name="consent"
-      title="consent"
-     className="text-right"
-      defaultValue="Femael"
-      readOnly={!isEditMode}
-      onBlur={handleFocusOut}
-    />
-  </div>
-  <div className="flex items-center p-3 w-full">
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
     <label className="font-semibold">Salary</label>
     <input
-      name="status"
+      name="birthdate"
       title="status"
-      className="text-right"
+      className="text-right flex flex-grow"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
     />
   </div>
-  <div className="flex items-center p-3 w-full">
-    <label className="font-semibold">Lastposition</label>
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+  <label className="font-semibold">Address</label>
     <input
       name="consent"
       title="consent"
-     className="text-right"
-      defaultValue="Femael"
+     className="text-right flex flex-grow"
+      defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
     />
-  </div>  <div className="flex items-center p-3 w-full">
+  </div>
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+    
+    <label className="font-semibold">Date of birth</label>
+    <input
+      name="status"
+      title="status"
+      className="text-right flex flex-grow"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+  <label className="font-semibold">Last Position</label>
+    <input
+      name="consent"
+      title="consent"
+     className="text-right flex flex-grow"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>      <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+
     
     <label className="font-semibold">Phone</label>
     <input
       name="status"
       title="status"
-      className="text-right"
+      className="text-right flex flex-grow"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
     />
   </div>
-  <div className="flex items-center p-3 w-full">
-    <label className="font-semibold">Noticed Period</label>
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+  <label className="font-semibold">Noticed Period</label>
     <input
       name="consent"
       title="consent"
-     className="text-right"
-      defaultValue="Femael"
+     className="text-right flex flex-grow focus:outline-none"
+      defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
     />
   </div>
     </div>
     <div>
-   
-</div>
+</div></div>
+        </div>  
+
+  <FcDiploma1 className="w-8 h-8 mx-2" />
+  <span className="tracking-wide font-semibold w-full">Education</span>
+
+
+<div className="grid grid-cols-2 md:grid-cols-4 mx-2">
+    <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Last Name</div>
-              <div className="px-4 py-2">Doe</div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Gender</div>
-              <div className="px-4 py-2">Female</div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Contact No.</div>
-              <div className="px-4 py-2">+11 998001001</div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Current Address</div>
-              <div className="px-4 py-2">Beech Creek, PA, Pennsylvania</div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Permanant Address</div>
-              <div className="px-4 py-2">Arlington Heights, IL, Illinois</div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Email.</div>
-              <div className="px-4 py-2">
-                <a className="text-blue-800" href="mailto:jane@example.com">jane@example.com</a>
-              </div>
-            </div>
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">Birthday</div>
-              <div className="px-4 py-2">Feb 06, 1998</div>
-            </div>
-          </div>
-        </div>
-        <button className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
-          Full Information</button>
-     
-      {/* End of about section */}
-      <div className="my-4" />
-      {/* Experience and education */}
-      <div className="bg-white p-3 shadow-sm rounded-sm">
-        <div className="grid grid-cols-2">
+        <label className="font-semibold">University</label>
+        <input
+          name="firstname"
+          title="firstname"
+          className="text-right flex flex-grow"
+          defaultValue="2022"
+          readOnly={!isEditMode}
+          onBlur={handleFocusOut}
+        />
+      </div>
+      <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+      <label className="font-semibold">Year</label>
+        <input
+          name="  lastname"
+          title="lastname"
+         className="text-right"
+          defaultValue=""
+          readOnly={!isEditMode}
+          onBlur={handleFocusOut}
+        />
+      </div>
+      <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+      <label className="font-semibold">Major</label>
+        <input
+          name="  lastname"
+          title="lastname"
+         className="text-right flex flex-grow"
+          defaultValue=""
+          readOnly={!isEditMode}
+          onBlur={handleFocusOut}
+        />
+      </div>
+      <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
+      <label className="font-semibold">GPA</label>
+        <input
+          name="  lastname"
+          title="lastname"
+         className="text-right"
+          defaultValue=""
+          readOnly={!isEditMode}
+          onBlur={handleFocusOut}
+        />
+      </div>
+   
+    </div>
+
           <div>
             <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-              <span clas="text-green-500">
-                <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </span>
-              <span className="tracking-wide">Experience</span>
-            </div>
-            <ul className="list-inside space-y-2">
-              <li>
-                <div className="text-teal-600">Owner at Her Company Inc.</div>
-                <div className="text-gray-500 text-xs">March 2020 - Now</div>
-              </li>
-              <li>
-                <div className="text-teal-600">Owner at Her Company Inc.</div>
-                <div className="text-gray-500 text-xs">March 2020 - Now</div>
-              </li>
-              <li>
-                <div className="text-teal-600">Owner at Her Company Inc.</div>
-                <div className="text-gray-500 text-xs">March 2020 - Now</div>
-              </li>
-              <li>
-                <div className="text-teal-600">Owner at Her Company Inc.</div>
-                <div className="text-gray-500 text-xs">March 2020 - Now</div>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-              <span clas="text-green-500">
-                <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
-                  <path fill="#fff" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                </svg>
-              </span>
-              <span className="tracking-wide">Education</span>
-            </div>
-            <ul className="list-inside space-y-2">
-              <li>
-                <div className="text-teal-600">Masters Degree in Oxford</div>
-                <div className="text-gray-500 text-xs">March 2020 - Now</div>
-              </li>
-              <li>
-                <div className="text-teal-600">Bachelors Degreen in LPU</div>
-                <div className="text-gray-500 text-xs">March 2020 - Now</div>
-              </li>
-            </ul>
+            <button className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
+            Full Information</button>
           </div>
         </div>
         {/* End of Experience and education grid */}
@@ -544,8 +513,8 @@ title="toggle"
       {/* End of profile tab */}
     </div>
   </div>
+ 
 
-  </div>
   );
 };
 
