@@ -4,25 +4,44 @@ import { useState } from 'react';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
-import { FcMenu } from "react-icons/fc";
-import { FcWikipedia } from "react-icons/fc";
+import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation } from "react-icons/fc";
 
+const ToggleEditInputFields = () => {
+  const [isEditMode, setIsEditMode] = useState(false);
 
+  const handleToggleChange = () => {
+    setIsEditMode((prev) => {
+      if (!prev) {
+        const alertElement = document.createElement('div');
+        alertElement.className = 'p-4 mb-4 text-sm text-white rounded-xl bg-green-500 opacity-90 font-normal fixed top-0 left-1/2 transform -translate-x-1/2';
+        alertElement.setAttribute('role', 'alert');
+        alertElement.innerHTML = '<span class="font-semibold mr-2">Edit mode: ON</span>'
+        
+        document.body.appendChild(alertElement);
+        setTimeout(() => {
+          document.body.removeChild(alertElement);
+        }, 2000);
+      }
+      return !prev;
+    });
+  };
 
-
-const Navbar = () => {
-  const [open, setOpen] = useState(false);
+  const handleFocusOut = (event: React.FocusEvent<HTMLInputElement>) => {
+    if (isEditMode) {
+      event.target.readOnly = true;
+      setTimeout(() => {
+        event.target.readOnly = false;
+      }, 0);
+    }
+  };
 
   return (
-    <div className="bg-slate-100">
-      <div className="w-full text-white bg-main-color">
-    {/* {Header} */}
-          </div>
+    <div className="bg-slate-100 w-full">
+
   
-      <div className="container mx-auto my-5 p-5">
-  <div className="md:flex no-wrap md:-mx-2">
+  <div className="md:flex h-full no-wrap md:-mx-2">
     {/* Left Side */}
-    <div className="w-full md:w-4/12 md:mx-2">
+    <div className="md:w-4/12 md:mx-2">
       {/* Profile Card */}
       <div className="bg-white p-2 border-t-8 border-sky-500 rounded-xl shadow-slate-300 shadow-inner">
         <div className="flex flex-col items-center gap-4 image overflow-hidden">
@@ -45,56 +64,62 @@ const Navbar = () => {
     </div>
 
     <div className="text-gray-400 gap-4 mb-2 flex justify-around">
-    <button className="bg-slate-100 text-gray-800 text-xs rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md p-2 inline-flex items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-       <path fill="currentcolor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
-      </svg>
-      <span>Delete</span>
-    </button>
-    <button className="bg-slate-100 text-gray-800 text-xs rounded border-b-2 border-green-500 gap-2 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md p-2 inline-flex items-center">
-     
+    <button className="bg-slate-100 text-gray-800 text-xs rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md p-2 inline-flex items-center" type="button">
   
-     <span>  Submit </span> 
-
-      
+    <span className="flex items-center gap-1">
+    <FcCancel className="w-5 h-5"/> 
+      Delete</span>
     </button>
-    </div>
-
+    <button
+      className="bg-slate-100 text-gray-800 text-xs rounded border-b-2 border-green-500 gap-2 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md p-2 inline-flex items-center"
+      type="button"
+    >
+      <span className="flex items-center gap-1">
+      Submit
+        <FcNext className="w-5 h-5" />
+        
+      </span>
+    </button>
+</div>
     <div className="bg-white p-3 w-full">
     <div className="flex items-center gap-2 text-gray-900 leading-8 font-semibold">
-    <FcMenu size={24} />
-    <h1 className="tracking-wide">Summary</h1>
+    <FcWorkflow className="w-5 h-5"/>
+    <h1 className="tracking-wide">
+    
+     Summary</h1>
+    
 </div>
 
             <label>
             <textarea
-            className="h-20 w-full bg-white text-md rounded-sm border border-none my-2" 
+            className="h-32 w-full bg-white text-md rounded-lg border border-none my-2" 
             placeholder="No data of Summary">
             </textarea> 
             </label>
-            <div className="flex items-center justify-start rounded-xl border-2 border-inner shadow-zinc-500/49 shadow-inner first-line:border-zine-500" >
-             <div className="w-full flex flex-col shadow-blue-500/40 leading-8 text-sm md:text-sm">
+            <div className="flex items-center justify-start rounded-xl border-2 border-inner shadow-gray-199 shadow-inner first-line:border-zine-500" >
+             <div className="w-full flex flex-col shadow-slate-100 text-md md:text-sm p-4">
              
 
             <div className='flex items-center justify-between'>
 
-<label className="text-gray-800">Status</label>
+<span className="text-zine-800 font-semibold">Status</span>
   
-  <select>
-    <option className="bg-green-500 py-1 px-2" value="course1">Course title</option>
-    <option className="bg-blue-500 py-1 px-2 "value="course2">Course title</option>
-    <option className="bg-orange-500 py-1 px-2" value="course3">Course title</option>
+  <select className="bg-transparent py-2" name="status" title="status">
+    
+    <option className="bg-green-500" value="course1">Course title</option>
+    <option className="bg-blue-500"value="course2">Course title</option>
+    <option className="bg-orange-500" value="course3">Course title</option>
   </select>
 </div>
 
 
-<div className="flex flex-row justify-between w-full">
-<span className="text-gray-800">Code</span>
+<div className="flex flex-row justify-between w-full py-2">
+<span className="text-gray-800 font-semibold">No.</span>
 <span className="text-gray-800 bg-transparent border-none rounded-lg">10001</span>
 </div>
 
-<div className="flex flex-row justify-between w-full">
-<span className="text-gray-800">Update</span>
+<div className="flex flex-row justify-between w-full py-2">
+<span className="text-gray-800 font-semibold">Update</span>
 <span className="text-gray-800 bg-transparent border-none rounded-lg">2024 Nov 12</span>
 </div>
 
@@ -106,12 +131,12 @@ const Navbar = () => {
             </div>
         </div>
       </div>
-      <div className="bg-white mt-2 p-2 border-t-8 border-sky-500 rounded-xl shadow-zine-400 shadow-inner">
+      <div className="bg-white mt-2 p-2 border-t-8 -inset-2 border-sky-500 rounded-xl shadow-zine-400 shadow-inner">
 
    
       <div className="flex items-center gap-2 text-gray-900 leading-8 font-semibold">
-        <FcWikipedia size={28} />
-        <h1 className="tracking-wide">History</h1>
+      <FcSalesPerformance className="w-5 h-5" />
+      <h1 className="tracking-wide">History</h1>
 
         </div>
 
@@ -122,7 +147,7 @@ const Navbar = () => {
             <div className="flex flex-row items-center w-full justify-between">
   <label htmlFor="status" className="text-gray-800">Status</label>
   
-  <select className="max-w-[280px] bg-transparent">
+  <select className="bg-transparent">
     <option className="bg-green-500 py-1 px-2" value="course1">Course title</option>
     <option className="bg-blue-500 py-1 px-2 "value="course2">Course title</option>
     <option className="bg-orange-500 py-1 px-2" value="course3">Course title</option>
@@ -161,44 +186,61 @@ const Navbar = () => {
       <div className="bg-white shadow-sm rounded-sm">
     
       <div className="w-full bg-white mx-auto">
-  <div className="px-4 bg-gradient-to-tl from-blue-500 via-teal-300 to-sky-500">
-    <nav className="flex flex-wrap gap-4 bg-gradient-to-bl from-blue-500 via-blue-900 to-sky-600 opacity-50">
-      <a
+  <div className="px-4 bg-transparent m-3">
+    <div className="flex flex-wrap gap-6 bg-gradient-to-tl from-sky-500 via-cyan-500 to-blue-500 p-2 rounded-xl">
+      <Link
         href="#"
-        className="inline-flex whitespace-nowrap border-b-2 border-transparent py-2 px-3 text-sm font-medium text-white transition-all duration-200 ease-in-out hover:border-b-purple-600 hover:text-purple-600"
-      >
-        Account
-      </a>
+        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md font-semibold text-white transition-all duration-200 
+        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:translate-y-2">
+        Personal
+      </Link>
+      <Link
+        href="#"
+        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md font-semibold text-white transition-all duration-200 
+        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:translate-y-2">
+        Experience
+      </Link>
+      <Link
+        href="#"
+        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md font-semibold text-white transition-all duration-200 
+        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:translate-y-2">
+        Test
+      </Link>
+      <Link
+        href="#"
+        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md font-semibold text-white transition-all duration-200 
+        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:translate-y-2">
+        File
+      </Link>
+      <Link
+        href="#"
+        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md font-semibold text-white transition-all duration-200 
+        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:translate-y-2">
+        Email
+      </Link>
 
-      <a
-        href="#"
-        className="inline-flex whitespace-nowrap border-b-2 border-transparent py-2 px-3 text-sm font-medium text-white transition-all duration-200 ease-in-out hover:border-b-purple-600 hover:text-purple-600"
-      >
-        Settings
-      </a>
+      
 
-      <a
-        href="#"
-        className="inline-flex whitespace-nowrap border-b-2 border-transparent border-b-purple-600 py-2 px-3 text-white text-sm font-semibold text-purple-600 transition-all duration-200 ease-in-out"
-      >
-        Orders
-      </a>
 
-      <a
-        href="#"
-        className="inline-flex whitespace-nowrap border-b-2 border-transparent py-2 px-3 text-sm font-medium text-white transition-all duration-200 ease-in-out hover:border-b-purple-600 hover:text-purple-600"
-      >
-        Sales
-      </a>
 
-      <a
-        href="#"
-        className="inline-flex whitespace-nowrap border-b-2 border-transparent py-2 px-3 text-sm font-medium text-white transition-all duration-200 ease-in-out hover:border-b-purple-600 hover:text-purple-600"
-      >
-        Suppliers
-      </a>
-    </nav>
+    </div>
+ 
     <ul className="flex items-center ml-auto justify-end space-x-3">
+    <label className="relative inline-block w-16 h-5 ml-auto text-xs font-thin mt-1">
+
+      
+<input
+title="toggle"
+  type="checkbox"
+  id="toggleEdit"
+  className="peer"
+  onChange={handleToggleChange}
+/>
+
+<span className="absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-gray-300 duration-300 
+  before:content-[''] before:absolute before:w-8 before:h-4 before:bottom-0.5 before:left-0.5
+  before:bg-white before:duration-300 peer-checked:before:translate-x-7 peer-checked:bg-blue-500 text-right font-semibold p-1 xt-white">Edit</span>
+</label>
 			<li className="inline-block">
 				<a target="_blank" className="hover:text-[#3b5998]" href="#" title="Share to Facebook">
 					<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 512 512">
@@ -230,24 +272,182 @@ const Navbar = () => {
 		</ul>
   </div>
 </div>
-
-
-
-
         <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
           <span clas="text-green-500">
-            <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
+          <FcVoicePresentation className="w-8 h-8 m-2" />
           </span>
-          <span className="tracking-wide">About</span>
+          <span className="tracking-wide">
+            Profiles</span>
+
+   
         </div>
         <div className="text-gray-700">
-          <div className="grid md:grid-cols-2 text-sm">
-            <div className="grid grid-cols-2">
-              <div className="px-4 py-2 font-semibold">First Name</div>
-              <div className="px-4 py-2">Jane</div>
-            </div>
+        <div className="grid grid-cols-2">
+      <div className="flex items-center p-3 w-full">
+    
+        <label className="font-semibold">First Name</label>
+        <input
+          name="firstname"
+          title="firstname"
+          className="text-right"
+          defaultValue=""
+          readOnly={!isEditMode}
+          onBlur={handleFocusOut}
+        />
+      </div>
+      <div className="flex items-center p-3 w-full">
+        <label className="font-semibold">Last Name</label>
+        <input
+          name="  lastname"
+          title="lastname"
+         className="text-right"
+          defaultValue="Femael"
+          readOnly={!isEditMode}
+          onBlur={handleFocusOut}
+        />
+      </div>
+      <div className="flex items-center p-3 w-full">
+    
+    <label className="font-semibold">Position</label>
+    <input
+      name="position"
+      title="position"
+      className="text-right"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center p-3 w-full">
+    <label className="font-semibold">CV No.</label>
+    <input
+      name="cvno"
+      title="cvno"
+     className="text-right"
+      defaultValue="Femael"
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center p-3 w-full">
+    
+    <label className="font-semibold">Status</label>
+    <input
+      name="status"
+      title="status"
+      className="text-right"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center p-3 w-full">
+    <label className="font-semibold">Consent</label>
+    <input
+      name="consent"
+      title="consent"
+     className="text-right"
+      defaultValue="Femael"
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center p-3 w-full">
+    
+    <label className="font-semibold">Email</label>
+    <input
+      name="email"
+      title="email"
+      className="text-right"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center p-3 w-full">
+    <label className="ดont-semibold">Age</label>
+    <input
+      name="age"
+      title="age"
+     className="text-right"
+      defaultValue="Femael"
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center p-3 w-full">
+    
+    <label className="font-semibold">Birthdate</label>
+    <input
+      name="birthdate"
+      title="status"
+      className="text-right"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center p-3 w-full">
+    <label className="font-semibold">Address</label>
+    <input
+      name="consent"
+      title="consent"
+     className="text-right"
+      defaultValue="Femael"
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center p-3 w-full">
+    
+    <label className="font-semibold">Salary</label>
+    <input
+      name="status"
+      title="status"
+      className="text-right"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center p-3 w-full">
+    <label className="font-semibold">Lastposition</label>
+    <input
+      name="consent"
+      title="consent"
+     className="text-right"
+      defaultValue="Femael"
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>  <div className="flex items-center p-3 w-full">
+    
+    <label className="font-semibold">Phone</label>
+    <input
+      name="status"
+      title="status"
+      className="text-right"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+  <div className="flex items-center p-3 w-full">
+    <label className="font-semibold">Noticed Period</label>
+    <input
+      name="consent"
+      title="consent"
+     className="text-right"
+      defaultValue="Femael"
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+  </div>
+    </div>
+    <div>
+   
+</div>
+    
             <div className="grid grid-cols-2">
               <div className="px-4 py-2 font-semibold">Last Name</div>
               <div className="px-4 py-2">Doe</div>
@@ -282,7 +482,7 @@ const Navbar = () => {
         </div>
         <button className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
           Full Information</button>
-      </div>
+     
       {/* End of about section */}
       <div className="my-4" />
       {/* Experience and education */}
@@ -344,16 +544,9 @@ const Navbar = () => {
       {/* End of profile tab */}
     </div>
   </div>
-</div>
 
-</div>
-
-
-
-
-
-
+  </div>
   );
 };
 
-export default Navbar;
+export default ToggleEditInputFields;
