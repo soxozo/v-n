@@ -5,6 +5,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
 import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating } from "react-icons/fc";
+import { BsDashSquare, BsPlusSquare } from "react-icons/bs";
+
 
 
  
@@ -51,6 +53,7 @@ const ToggleEditInputFields = () => {
   };
 
 
+
   const [rows, setRows] = useState([
     { dropdown: ["1", "2", "3", "4"], input: "" },
   ]);
@@ -64,6 +67,8 @@ const ToggleEditInputFields = () => {
       setRows(rows.slice(0, -1));
     }
   };
+
+   
 
   return (
     <div className="bg-slate-100 w-full">
@@ -217,7 +222,7 @@ const ToggleEditInputFields = () => {
     
       <div className="w-full bg-white mx-auto">
   <div className="px-2 bg-transparent">
-    <div className="flex flex-wrap gap-6 bg-gradient-to-tl from-sky-500 via-cyan-500 to-blue-500 p-2 rounded-xl font-light justify-around">
+    <div className="flex flex-wrap gap-6 bg-gradient-to-tl from-sky-500 via-cyan-500 to-blue-500 p-2 rounded-xl font-light justify-start">
       <Link
         href="#"
         className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
@@ -318,7 +323,7 @@ title="toggle"
         <input
           name="firstname"
           title="firstname"
-          className="text-right flex-grow"
+          className="text-right flex flex-grow focus:outline-none focus:font-semibold"
           defaultValue=""
           readOnly={!isEditMode}
           onBlur={handleFocusOut}
@@ -329,7 +334,7 @@ title="toggle"
         <input
           name="  lastname"
           title="lastname"
-         className="text-right flex-grow"
+          className="text-right flex flex-grow focus:outline-none focus:font-semibold"
           defaultValue=""
           readOnly={!isEditMode}
           onBlur={handleFocusOut}
@@ -341,7 +346,7 @@ title="toggle"
     <input
       name="position"
       title="position"
-      className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -352,7 +357,7 @@ title="toggle"
     <input
       name="cvno"
       title="cvno"
-     className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -364,7 +369,7 @@ title="toggle"
     <input
       name="status"
       title="status"
-      className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -375,7 +380,7 @@ title="toggle"
     <input
       name="consent"
       title="consent"
-     className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -387,7 +392,7 @@ title="toggle"
     <input
       name="email"
       title="email"
-      className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -398,7 +403,7 @@ title="toggle"
     <input
       name="age"
       title="age"
-     className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -410,7 +415,7 @@ title="toggle"
     <input
       name="birthdate"
       title="status"
-      className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -421,7 +426,7 @@ title="toggle"
     <input
       name="consent"
       title="consent"
-     className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -433,7 +438,7 @@ title="toggle"
     <input
       name="status"
       title="status"
-      className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -444,7 +449,7 @@ title="toggle"
     <input
       name="consent"
       title="consent"
-     className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -456,7 +461,7 @@ title="toggle"
     <input
       name="status"
       title="status"
-      className="text-right flex flex-grow"
+      className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -467,7 +472,7 @@ title="toggle"
     <input
       name="consent"
       title="consent"
-     className="text-right flex flex-grow focus:outline-none"
+     className="text-right flex flex-grow focus:outline-none focus:font-semibold"
       defaultValue=""
       readOnly={!isEditMode}
       onBlur={handleFocusOut}
@@ -490,10 +495,8 @@ title="toggle"
           <span className="tracking-wide">
           Education</span>
 </div>
-<div className="grid grid-cols-4 grid-rows-2 w-full text-md">
-      {/* Row 1 */}
-      <div className="col-span-3 mx-2">
-        
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-rows-2 w-full text-md gap-4">
+      <div className="col-span-3 mx-2">   
         <label className="text-gray-500 text-xs mx-4">MAJOR</label>
     
       <div className="flex flex-grow justify-end w-full">
@@ -509,10 +512,10 @@ title="toggle"
        </div>
 
 
-       <div className="col-span-1 mx-2">
-
-        <label className="text-gray-500 text-xs mx-4">YEAR</label>
-   
+       <div className="col-span-1 mx-2">     
+        <div>   
+        <label className="text-gray-500 text-xs mx-4">GRADUATE YEAR</label>
+        </div>
       <div className="flex flex-grow justify-end w-full">
       <input
       name="year"
@@ -523,7 +526,9 @@ title="toggle"
       onBlur={handleFocusOut}
     />
       </div>
-    </div>
+      </div>
+  
+
 
 
       {/* Row 2 */}
@@ -567,12 +572,25 @@ title="toggle"
 
 
       
-      <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+    <div className="flex items-center font-semibold text-gray-900 leading-8">
           <span className="text-green-500">
           <FcBarChart   className="w-8 h-8 m-2" />
           </span>
           <span className="tracking-wide">
           Skills</span>
+          <div className="flex ml-auto mx-9 gap-4">
+        <button
+          onClick={handleAddRow}
+        >
+          <BsPlusSquare className='h-5 w-5'/>
+        </button>
+        <button
+          onClick={handleRemoveRow}
+          title="Remove Row"
+        >
+      <BsDashSquare className='h-5 w-5'/>
+        </button>
+      </div>
 </div>
 <div className="p-4">
       <div className="grid grid-cols-[1fr_3fr] gap-4">
@@ -615,34 +633,27 @@ title="toggle"
           </React.Fragment>
         ))}
       </div>
-      {/* Buttons */}
-      <div className="mt-4 flex gap-2">
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          onClick={handleAddRow}
-        >
-          +
-        </button>
-        <button
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-          onClick={handleRemoveRow}
-          title="Remove Row"
-        >
-        </button>
+     
       </div>
 
-
    
-    <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+    <div className="flex items-center font-semibold text-gray-900 leading-8">
           <span className="text-green-500">
           <FcRating  className="w-8 h-8 m-2" />
           </span>
           <span className="tracking-wide">
           Certificates</span>
+          <div className="flex ml-auto">
+                <button
+        type="button"
+        onClick={handleAddField}
+      >
+     <BsPlusSquare className='h-5 w-5 mx-14'/>
+      </button>
+</div>
 </div> 
 
-<div className="px-6 bg-white rounded-lg shadow-lg w-full mx-auto">
-      <h1 className="text-xl font-bold mb-4">Dynamic Input Fields</h1>
+<div className="bg-white rounded-lg shadow-lg w-full mx-auto">
       {fields.map((value, index) => (
         <div key={index} className="flex items-center mb-3">
           <input
@@ -650,32 +661,26 @@ title="toggle"
             value={value}
             onChange={(e) => {
               const newFields = [...fields];
-              newFields[index] = e.target.value; // อัปเดตค่าที่พิมพ์ลงไป
+              newFields[index] = e.target.value;
               setFields(newFields);
             }}
             className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder={`Input ${index + 1}`}
           />
           <button
+          
             type="button"
             onClick={() => handleRemoveField(index)}
-            className="ml-2 px-3 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none"
           >
-            -
+        <BsDashSquare className='h-5 w-5 mx-4'/>
           </button>
         </div>
       ))}
-      <button
-        type="button"
-        onClick={handleAddField}
-        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
-      >
-        + Add Field
-      </button>
+
     </div>
 
 
-</div></div>
+</div>
 </div>
     </div>
 </div>
