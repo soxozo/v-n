@@ -4,7 +4,10 @@ import { useState } from 'react';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
-import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcDiploma1 } from "react-icons/fc";
+import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating } from "react-icons/fc";
+
+
+ 
 
 const ToggleEditInputFields = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -26,12 +29,39 @@ const ToggleEditInputFields = () => {
     });
   };
 
+  const [fields, setFields] = useState<string[]>([""]); // เริ่มต้นด้วย input field 1 ช่อง
+
+  // ฟังก์ชันเพิ่ม input field
+  const handleAddField = () => {
+    setFields([...fields, ""]); // เพิ่มค่าเปล่าเข้าไปใน Array
+  };
+
+  // ฟังก์ชันลบ input field
+  const handleRemoveField = (index: number) => {
+    setFields(fields.filter((_, i) => i !== index)); // ลบค่าใน index ที่เลือก
+  };
+
   const handleFocusOut = (event: React.FocusEvent<HTMLInputElement>) => {
     if (isEditMode) {
       event.target.readOnly = true;
       setTimeout(() => {
         event.target.readOnly = false;
       }, 0);
+    }
+  };
+
+
+  const [rows, setRows] = useState([
+    { dropdown: ["1", "2", "3", "4"], input: "" },
+  ]);
+
+  const handleAddRow = () => {
+    setRows([...rows, { dropdown: ["1", "2", "3", "4"], input: "" }]);
+  };
+
+  const handleRemoveRow = () => {
+    if (rows.length > 1) {
+      setRows(rows.slice(0, -1));
     }
   };
 
@@ -282,25 +312,24 @@ title="toggle"
    
         </div>
         <div className="text-gray-700">
-  <div className="grid grid-cols-1 md:grid-cols-2 mx-2">
-    <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-    
-        <label className="font-semibold">First Name</label>
+  <div className="grid grid-cols-1 md:grid-cols-2 mx-2 font-thin text-md md:text-sm sm:text-md divide-x-2">
+  <div className="flex items-center px-6 py-4 m-2 w-full">
+      <label className="font-thin mx-2">Firstname</label>
         <input
           name="firstname"
           title="firstname"
-          className="text-right flex flex-grow"
+          className="text-right flex-grow"
           defaultValue=""
           readOnly={!isEditMode}
           onBlur={handleFocusOut}
         />
       </div>
       <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-      <label className="font-semibold">Last Name</label>
+      <label className="font-thin mx-2">Lastname</label>
         <input
           name="  lastname"
           title="lastname"
-         className="text-right flex flex-grow"
+         className="text-right flex-grow"
           defaultValue=""
           readOnly={!isEditMode}
           onBlur={handleFocusOut}
@@ -308,7 +337,7 @@ title="toggle"
       </div>
       <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
-    <label className="font-semibold">Position</label>
+      <label className="font-thin mx-2">Position</label>
     <input
       name="position"
       title="position"
@@ -319,7 +348,7 @@ title="toggle"
     />
   </div>
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-  <label className="font-semibold">CV No.</label>
+  <label className="font-thin mx-2">CV No.</label>
     <input
       name="cvno"
       title="cvno"
@@ -331,7 +360,7 @@ title="toggle"
   </div>
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
-    <label className="font-semibold">Status</label>
+  <label className="font-thin mx-2">Status</label>
     <input
       name="status"
       title="status"
@@ -342,7 +371,7 @@ title="toggle"
     />
   </div>
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-  <label className="font-semibold">Consent</label>
+  <label className="font-thin mx-2">Consent</label>
     <input
       name="consent"
       title="consent"
@@ -354,7 +383,7 @@ title="toggle"
   </div>
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
-    <label className="font-semibold">Email</label>
+  <label className="font-thin mx-2">Email</label>
     <input
       name="email"
       title="email"
@@ -365,7 +394,7 @@ title="toggle"
     />
   </div>
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-  <label className="font-semibold">Age</label>
+  <label className="font-thin mx-2">Age</label>
     <input
       name="age"
       title="age"
@@ -377,7 +406,7 @@ title="toggle"
   </div>
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
-    <label className="font-semibold">Salary</label>
+  <label className="font-thin mx-2">Salary</label>
     <input
       name="birthdate"
       title="status"
@@ -388,7 +417,7 @@ title="toggle"
     />
   </div>
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-  <label className="font-semibold">Address</label>
+  <label className="font-thin mx-2">Address</label>
     <input
       name="consent"
       title="consent"
@@ -400,7 +429,7 @@ title="toggle"
   </div>
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
     
-    <label className="font-semibold">Date of birth</label>
+  <label className="font-thin mx-2">Date of birth</label>
     <input
       name="status"
       title="status"
@@ -411,7 +440,7 @@ title="toggle"
     />
   </div>
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-  <label className="font-semibold">Last Position</label>
+  <label className="font-thin mx-2">Last Position</label>
     <input
       name="consent"
       title="consent"
@@ -423,7 +452,7 @@ title="toggle"
   </div>      <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
 
     
-    <label className="font-semibold">Phone</label>
+  <label className="font-thin mx-2">Phone</label>
     <input
       name="status"
       title="status"
@@ -434,7 +463,7 @@ title="toggle"
     />
   </div>
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-  <label className="font-semibold">Noticed Period</label>
+  <label className="font-thin mx-2">Noticed Period</label>
     <input
       name="consent"
       title="consent"
@@ -444,77 +473,212 @@ title="toggle"
       onBlur={handleFocusOut}
     />
   </div>
-    </div>
-    <div>
-</div></div>
-        </div>  
+  </div>
 
-  <FcDiploma1 className="w-8 h-8 mx-2" />
-  <span className="tracking-wide font-semibold w-full">Education</span>
+  </div>  
 
-
-<div className="grid grid-cols-2 md:grid-cols-4 mx-2">
-    <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-    
-        <label className="font-semibold">University</label>
-        <input
-          name="firstname"
-          title="firstname"
-          className="text-right flex flex-grow"
-          defaultValue="2022"
-          readOnly={!isEditMode}
-          onBlur={handleFocusOut}
-        />
-      </div>
-      <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-      <label className="font-semibold">Year</label>
-        <input
-          name="  lastname"
-          title="lastname"
-         className="text-right"
-          defaultValue=""
-          readOnly={!isEditMode}
-          onBlur={handleFocusOut}
-        />
-      </div>
-      <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-      <label className="font-semibold">Major</label>
-        <input
-          name="  lastname"
-          title="lastname"
-         className="text-right flex flex-grow"
-          defaultValue=""
-          readOnly={!isEditMode}
-          onBlur={handleFocusOut}
-        />
-      </div>
-      <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
-      <label className="font-semibold">GPA</label>
-        <input
-          name="  lastname"
-          title="lastname"
-         className="text-right"
-          defaultValue=""
-          readOnly={!isEditMode}
-          onBlur={handleFocusOut}
-        />
-      </div>
-   
-    </div>
-
-          <div>
-            <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+<div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
             <button className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
             Full Information</button>
-          </div>
-        </div>
-        {/* End of Experience and education grid */}
-      </div>
-      {/* End of profile tab */}
-    </div>
-  </div>
- 
+            </div>
 
+
+            <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+          <span className="text-green-500">
+          <FcReading  className="w-8 h-8 m-2" />
+          </span>
+          <span className="tracking-wide">
+          Education</span>
+</div>
+<div className="grid grid-cols-4 grid-rows-2 w-full text-md">
+      {/* Row 1 */}
+      <div className="col-span-3 mx-2">
+        
+        <label className="text-gray-500 text-xs mx-4">MAJOR</label>
+    
+      <div className="flex flex-grow justify-end w-full">
+      <input
+      name="major"
+      title="major"
+     className="text-right flex flex-grow focus:outline-none"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+      </div>
+       </div>
+
+
+       <div className="col-span-1 mx-2">
+
+        <label className="text-gray-500 text-xs mx-4">YEAR</label>
+   
+      <div className="flex flex-grow justify-end w-full">
+      <input
+      name="year"
+      title="year"
+     className="text-right flex flex-grow focus:outline-none"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+      </div>
+    </div>
+
+
+      {/* Row 2 */}
+      <div className="col-span-3 mx-2">   
+        <div className="">
+        <label className="text-xs text-gray-500 mx-4">UNIVERSITY</label>
+      </div>
+      {/* Row 2: Input Field */}
+      <div className="flex flex-grow justify-end w-full">
+      <input
+      name="university"
+      title="university"
+     className="text-right flex flex-grow focus:outline-none"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+      </div>
+      
+      </div>
+
+
+
+      <div className="col-span-1 mx-2">        
+        <div className="">
+        <label className="text-gray-500 text-xs mx-4">GPA</label>
+      </div>
+      {/* Row 2: Input Field */}
+      <div className="flex flex-grow justify-end w-full">
+      <input
+      name="gpa"
+      title="gpa"
+     className="text-right flex flex-grow focus:outline-none"
+      defaultValue=""
+      readOnly={!isEditMode}
+      onBlur={handleFocusOut}
+    />
+      </div>
+      </div>
+    </div>
+
+
+      
+      <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+          <span className="text-green-500">
+          <FcBarChart   className="w-8 h-8 m-2" />
+          </span>
+          <span className="tracking-wide">
+          Skills</span>
+</div>
+<div className="p-4">
+      <div className="grid grid-cols-[1fr_3fr] gap-4">
+        {/* Row 1 */}
+        <div>
+          <select className="w-full p-2 border rounded">
+            {rows[0].dropdown.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <input
+            type="text"
+            className="w-full p-2 border rounded"
+            placeholder="Input"
+          />
+        </div>
+        {/* Dynamic Rows */}
+        {rows.slice(1).map((row, index) => (
+          <React.Fragment key={index}>
+            <div>
+              <select className="w-full p-2 border rounded">
+                {row.dropdown.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <input
+                type="text"
+                className="w-full p-2 border rounded"
+                placeholder="Input"
+              />
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
+      {/* Buttons */}
+      <div className="mt-4 flex gap-2">
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          onClick={handleAddRow}
+        >
+          +
+        </button>
+        <button
+          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          onClick={handleRemoveRow}
+          title="Remove Row"
+        >
+        </button>
+      </div>
+
+
+   
+    <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+          <span className="text-green-500">
+          <FcRating  className="w-8 h-8 m-2" />
+          </span>
+          <span className="tracking-wide">
+          Certificates</span>
+</div> 
+
+<div className="px-6 bg-white rounded-lg shadow-lg w-full mx-auto">
+      <h1 className="text-xl font-bold mb-4">Dynamic Input Fields</h1>
+      {fields.map((value, index) => (
+        <div key={index} className="flex items-center mb-3">
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => {
+              const newFields = [...fields];
+              newFields[index] = e.target.value; // อัปเดตค่าที่พิมพ์ลงไป
+              setFields(newFields);
+            }}
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder={`Input ${index + 1}`}
+          />
+          <button
+            type="button"
+            onClick={() => handleRemoveField(index)}
+            className="ml-2 px-3 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none"
+          >
+            -
+          </button>
+        </div>
+      ))}
+      <button
+        type="button"
+        onClick={handleAddField}
+        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
+      >
+        + Add Field
+      </button>
+    </div>
+
+
+</div></div>
+</div>
+    </div>
+</div>
   );
 };
 
