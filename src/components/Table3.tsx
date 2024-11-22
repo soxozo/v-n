@@ -5,7 +5,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
 import { TETabs, TETabsContent, TETabsItem, TETabsPane } from "tw-elements-react";
-import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating } from "react-icons/fc";
+import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating, FcMindMap  } from "react-icons/fc";
 import { BsDashSquare, BsPlusSquare } from "react-icons/bs";
 
 
@@ -84,6 +84,19 @@ const ToggleEditInputFields = () => {
       }
       setButtonActive(value);
     };
+
+
+      const [layouts, setLayouts] = useState([0]); 
+    
+      const addLayout = () => {
+        setLayouts([...layouts, layouts.length]); 
+      };
+    
+      const removeLayout = () => {
+        if (layouts.length > 1) {
+          setLayouts(layouts.slice(0, -1)); 
+        };
+       }
 
 
   return (
@@ -188,7 +201,7 @@ const ToggleEditInputFields = () => {
 
         </div>
 
-        <div className="grid grid-cols-1 bg-slate-50 shadow-inner rounded-xl border-2 border-inner shadow-zinc-500/49 shadow-innerfirst-line:border-zine-500" >
+        <div className="grid grid-cols-1 bg-slate-50 shadow-inner rounded-xl border-2 border-inner shadow-zinc-500/49 shadow-innermost-line:border-zine-500" >
              <div className="w-full flex flex-col items-start shadow-blue-500/40 text-xs decoration-transparent">
 
 
@@ -238,8 +251,8 @@ const ToggleEditInputFields = () => {
     
       <div className="w-full bg-white mx-auto">
   <div className="border-t-8 border-sky-500 rounded-xl shadow-slate-300 shadow-inner">
-    <div className="flex flex-wrap ">
-    <TETabs className="shadow-xl rounded-lg w-full font-semibold bg-slate-100">
+    <div className="flex flex-wrap">
+    <TETabs className="shadow-xl rounded-lg w-full font-semibold bg-slate-100 py-2 mx-2">
         <TETabsItem
           onClick={() => handleButtonClick("tab1")}
           active={buttonActive === "tab1"}
@@ -268,16 +281,10 @@ const ToggleEditInputFields = () => {
         >
           TEST
         </TETabsItem>
-        <TETabsItem
-          onClick={() => handleButtonClick("tab5")}
-          active={buttonActive === "tab5"}
-          tag="button"
-        >
-          CV
-        </TETabsItem>
+
         
 
-    <ul className="flex items-center ml-auto justify-end space-x-3">
+    <ul className="flex items-center ml-auto justify-end space-x-2 sm:justify-around sm:w-full">
     <label className="relative inline-block w-16 h-5 ml-auto text-xs font-thin mt-1">
 
       
@@ -327,7 +334,8 @@ title="toggle"
 </div>
 </div>
 
-
+<TETabsContent>
+<TETabsPane show={buttonActive === "tab1"}>
 
         <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
           <span className="text-green-500">
@@ -337,11 +345,9 @@ title="toggle"
             Profiles</span>
             </div>
 
-
+            
    
-    <TETabsContent>
-        <TETabsPane show={buttonActive === "tab1"}>
-         
+    
     
   <div className="grid grid-cols-1 md:grid-cols-2 mx-2 font-thin text-md md:text-sm sm:text-md divide-x-2">
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
@@ -506,8 +512,6 @@ title="toggle"
   </div>
   </div>   
   
-     </TETabsPane>
-      </TETabsContent>  
 
 
   <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
@@ -715,14 +719,73 @@ title="toggle"
         </div>
       ))}
 
-    </div>
+</div>
+
     </>
+    
             )
           }
+      
+      </TETabsPane>
+      </TETabsContent> 
+            </div>
+
+        
+         
+   
+          <TETabsContent>
+<TETabsPane show={buttonActive === "tab2"}>
+
+        <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+          <span className="text-green-500">
+          <FcMindMap className="w-8 h-8 m-2" />
+          </span>
+          <span className="tracking-wide">
+            Experience</span>
+            </div>
+         
+            <div>
+      <div className="mb-4 flex gap-4">
+        <button
+          onClick={addLayout}
+          className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+        >
+          +
+        </button>
+        <button
+          onClick={removeLayout}
+          className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+        >
+          -
+        </button>
+      </div>
+
+      {/* Render Layouts */}
+      {layouts.map((layout, index) => (
+        <div
+          key={index}
+          className="flex flex-wrap md:flex-nowrap mb-4 border border-gray-300"
+        >
+          {/* Column ซ้าย */}
+          <div className="w-full md:w-1/3 space-y-4">
+            <div className="bg-blue-300 p-4">Row 1 (Left Column)</div>
+            <div className="bg-blue-400 p-4">Row 2 (Left Column)</div>
+            <div className="bg-blue-500 p-4">Row 3 (Left Column)</div>
+          </div>
+          {/* Column ขวา */}
+          <div className="w-full md:w-2/3 bg-red-300 p-4">
+            Right Column (Large Row)
+          </div>
+        </div>
+      ))}
+    </div>
+    </TETabsPane>
+    </TETabsContent>    
+
     </div>
     </div>
-</div>
-</div>
+    </div>
+  
 
  
   );
