@@ -1,15 +1,15 @@
-'use client'
+"use client";
 
 import { useState } from 'react';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
+import { TETabs, TETabsContent, TETabsItem, TETabsPane } from "tw-elements-react";
 import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating } from "react-icons/fc";
 import { BsDashSquare, BsPlusSquare } from "react-icons/bs";
 
 
 
- 
 
 const ToggleEditInputFields = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -30,6 +30,13 @@ const ToggleEditInputFields = () => {
       return !prev;
     });
   };
+
+  const [isContentVisible, setContentVisible] = useState(false);
+  
+  const handleToggle = () => {
+    setContentVisible(prevState => !prevState);
+  };
+
 
   const [fields, setFields] = useState<string[]>([""]); // เริ่มต้นด้วย input field 1 ช่อง
 
@@ -68,16 +75,21 @@ const ToggleEditInputFields = () => {
     }
   };
 
-   
+ 
+    const [buttonActive, setButtonActive] = useState("tab1");
+  
+    const handleButtonClick = (value: string) => {
+      if (value === buttonActive) {
+        return;
+      }
+      setButtonActive(value);
+    };
+
 
   return (
     <div className="bg-slate-100 w-full">
-
-  
   <div className="md:flex h-full no-wrap md:-mx-2">
-    {/* Left Side */}
     <div className="md:w-4/12 md:mx-2">
-      {/* Profile Card */}
       <div className="bg-white p-2 border-t-8 border-sky-500 rounded-xl shadow-slate-300 shadow-inner">
         <div className="flex flex-col items-center gap-4 image overflow-hidden">
 
@@ -96,7 +108,8 @@ const ToggleEditInputFields = () => {
         width={111}
         height={111} 
         className="relative object-cover shrink-0 h-28 w-28 z-10 rounded-xl" />
-    </div>
+        </div>
+
 
     <div className="text-gray-400 gap-4 mb-2 flex justify-around">
     <button className="bg-slate-100 text-gray-800 text-xs rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md p-2 inline-flex items-center" type="button">
@@ -115,22 +128,22 @@ const ToggleEditInputFields = () => {
         
       </span>
     </button>
-</div>
+      </div>
+
     <div className="bg-white p-3 w-full">
     <div className="flex items-center gap-2 text-gray-900 leading-8 font-semibold">
     <FcWorkflow className="w-5 h-5"/>
-    <h1 className="tracking-wide">
+    <h1 className="tracking-wide">Summary</h1>
     
-     Summary</h1>
-    
-</div>
-
+    </div>
+        <div className="shadow-xl">
             <label>
             <textarea
             className="h-32 w-full bg-white text-md rounded-lg border border-none my-2" 
             placeholder="No data of Summary">
             </textarea> 
             </label>
+         </div>   
             <div className="flex items-center justify-start rounded-xl border-2 border-inner shadow-gray-199 shadow-inner first-line:border-zine-500" >
              <div className="w-full flex flex-col shadow-slate-100 text-md md:text-sm p-4">
              
@@ -158,12 +171,12 @@ const ToggleEditInputFields = () => {
 <span className="text-gray-800 bg-transparent border-none rounded-lg">2024 Nov 12</span>
 </div>
 
-
+</div>
+</div>
 </div>
 
-</div>
 
-            </div>
+           
         </div>
       </div>
       <div className="bg-white mt-2 p-2 border-t-8 -inset-2 border-sky-500 rounded-xl shadow-zine-400 shadow-inner">
@@ -214,52 +227,56 @@ const ToggleEditInputFields = () => {
   </div>
       </div>
     </div>
-    {/* Right Side */}
+
+
+
+   
     <div className="w-full md:w-9/12 mx-2">
  
      
-      <div className="bg-white shadow-sm rounded-sm">
+      <div className="bg-white shadow-sm rounded">
     
       <div className="w-full bg-white mx-auto">
-  <div className="px-2 bg-transparent">
-    <div className="flex flex-wrap gap-6 bg-gradient-to-tl from-sky-500 via-cyan-500 to-blue-500 p-2 rounded-xl font-light justify-start">
-      <Link
-        href="#"
-        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
-        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:-translate-y-2">
-        Personal
-      </Link>
-      <Link
-        href="#"
-        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
-        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:-translate-y-2">
-        Experience
-      </Link>
-      <Link
-        href="#"
-        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
-        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:-translate-y-2">
-        Test
-      </Link>
-      <Link
-        href="#"
-        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
-        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:-translate-y-2">
-        File
-      </Link>
-      <Link
-        href="#"
-        className="inline-flex whitespace-nowrap border-b-4 border-transparent text-md focus:font-semibold text-white transition-all duration-200 
-        shadow-lg ease-in-out focus:border-b-white hover:text-sky-200 focus:-translate-y-2">
-        Email
-      </Link>
+  <div className="border-t-8 border-sky-500 rounded-xl shadow-slate-300 shadow-inner">
+    <div className="flex flex-wrap ">
+    <TETabs className="shadow-xl rounded-lg w-full font-semibold bg-slate-100">
+        <TETabsItem
+          onClick={() => handleButtonClick("tab1")}
+          active={buttonActive === "tab1"}
+          tag="button"
+        >
+          PERSONAL
+        </TETabsItem>
+        <TETabsItem
+          onClick={() => handleButtonClick("tab2")}
+          active={buttonActive === "tab2"}
+          tag="button"
+        >
+          EXPERIENCE
+        </TETabsItem>
+        <TETabsItem
+          onClick={() => handleButtonClick("tab3")}
+          active={buttonActive === "tab3"}
+          tag="button"
+        >
+          FILE
+        </TETabsItem>
+        <TETabsItem
+          onClick={() => handleButtonClick("tab4")}
+          active={buttonActive === "tab4"}
+          tag="button"
+        >
+          TEST
+        </TETabsItem>
+        <TETabsItem
+          onClick={() => handleButtonClick("tab5")}
+          active={buttonActive === "tab5"}
+          tag="button"
+        >
+          CV
+        </TETabsItem>
+        
 
-      
-
-
-
-    </div>
- 
     <ul className="flex items-center ml-auto justify-end space-x-3">
     <label className="relative inline-block w-16 h-5 ml-auto text-xs font-thin mt-1">
 
@@ -305,20 +322,29 @@ title="toggle"
 				</a>
 			</li>
 		</ul>
+    </TETabs>
   </div>
 </div>
+</div>
+
+
+
         <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
           <span className="text-green-500">
           <FcVoicePresentation className="w-8 h-8 m-2" />
           </span>
           <span className="tracking-wide">
             Profiles</span>
+            </div>
+
 
    
-        </div>
-        <div className="text-gray-700">
+    <TETabsContent>
+        <TETabsPane show={buttonActive === "tab1"}>
+         
+    
   <div className="grid grid-cols-1 md:grid-cols-2 mx-2 font-thin text-md md:text-sm sm:text-md divide-x-2">
-  <div className="flex items-center px-6 py-4 m-2 w-full">
+  <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
       <label className="font-thin mx-2">Firstname</label>
         <input
           name="firstname"
@@ -478,23 +504,34 @@ title="toggle"
       onBlur={handleFocusOut}
     />
   </div>
-  </div>
-
-  </div>  
-
-<div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-            <button className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
-            Full Information</button>
-            </div>
+  </div>   
+  
+     </TETabsPane>
+      </TETabsContent>  
 
 
-            <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+  <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+        <button
+          onClick={handleToggle} // Attach the toggle function
+          className="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"
+        >
+          {isContentVisible ? 'Hide' : 'Show'} Full Information
+        </button>
+      </div>
+
+            {isContentVisible && (
+              <>
+            <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 rounded-lg border-t-8 border-sky-500" 
+            id="profile"
+            role="tabpanel" 
+            aria-labelledby="profile-tab">
           <span className="text-green-500">
           <FcReading  className="w-8 h-8 m-2" />
           </span>
           <span className="tracking-wide">
           Education</span>
-</div>
+          </div>
+        
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-rows-2 w-full text-md gap-4">
       <div className="col-span-3 mx-2">   
         <label className="text-gray-500 text-xs mx-4">MAJOR</label>
@@ -511,6 +548,7 @@ title="toggle"
       </div>
        </div>
 
+       
 
        <div className="col-span-1 mx-2">     
         <div>   
@@ -678,12 +716,15 @@ title="toggle"
       ))}
 
     </div>
-
-
-</div>
-</div>
+    </>
+            )
+          }
+    </div>
     </div>
 </div>
+</div>
+
+ 
   );
 };
 
