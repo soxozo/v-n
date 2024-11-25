@@ -4,23 +4,28 @@ import { useState } from 'react';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
+import PreviewComponent from '@/components/preview';
 import { TETabs, TETabsContent, TETabsItem, TETabsPane } from "tw-elements-react";
-import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating } from "react-icons/fc";
+import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating, FcMindMap, FcAudioFile, FcRight } from "react-icons/fc";
 import { BsDashSquare, BsPlusSquare } from "react-icons/bs";
 
-
-
-
 const ToggleEditInputFields = () => {
+  // State
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isContentVisible, setContentVisible] = useState(false);
+  const [fields, setFields] = useState<string[]>([""]);
+  const [rows, setRows] = useState([{ dropdown: ["1", "2", "3", "4"], input: "" }]);
+  const [buttonActive, setButtonActive] = useState("tab1");
+  const [layouts, setLayouts] = useState([0]);
 
+  // Handlers for Edit Mode
   const handleToggleChange = () => {
     setIsEditMode((prev) => {
       if (!prev) {
         const alertElement = document.createElement('div');
         alertElement.className = 'p-4 mb-4 text-sm text-white rounded-xl bg-green-500 opacity-90 font-normal fixed top-0 left-1/2 transform -translate-x-1/2';
         alertElement.setAttribute('role', 'alert');
-        alertElement.innerHTML = '<span class="font-semibold mr-2">Edit mode: ON</span>'
+        alertElement.innerHTML = '<span class="font-semibold mr-2">Edit mode: ON</span>';
         
         document.body.appendChild(alertElement);
         setTimeout(() => {
@@ -31,23 +36,18 @@ const ToggleEditInputFields = () => {
     });
   };
 
-  const [isContentVisible, setContentVisible] = useState(false);
-  
+  // Handlers for Content Visibility
   const handleToggle = () => {
-    setContentVisible(prevState => !prevState);
+    setContentVisible((prevState) => !prevState);
   };
 
-
-  const [fields, setFields] = useState<string[]>([""]); // เริ่มต้นด้วย input field 1 ช่อง
-
-  // ฟังก์ชันเพิ่ม input field
+  // Handlers for Input Fields
   const handleAddField = () => {
-    setFields([...fields, ""]); // เพิ่มค่าเปล่าเข้าไปใน Array
+    setFields([...fields, ""]);
   };
 
-  // ฟังก์ชันลบ input field
   const handleRemoveField = (index: number) => {
-    setFields(fields.filter((_, i) => i !== index)); // ลบค่าใน index ที่เลือก
+    setFields(fields.filter((_, i) => i !== index));
   };
 
   const handleFocusOut = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -59,12 +59,7 @@ const ToggleEditInputFields = () => {
     }
   };
 
-
-
-  const [rows, setRows] = useState([
-    { dropdown: ["1", "2", "3", "4"], input: "" },
-  ]);
-
+  // Handlers for Rows
   const handleAddRow = () => {
     setRows([...rows, { dropdown: ["1", "2", "3", "4"], input: "" }]);
   };
@@ -75,16 +70,120 @@ const ToggleEditInputFields = () => {
     }
   };
 
- 
-    const [buttonActive, setButtonActive] = useState("tab1");
-  
-    const handleButtonClick = (value: string) => {
-      if (value === buttonActive) {
-        return;
-      }
-      setButtonActive(value);
-    };
+  // Handlers for Layouts
+  const addLayout = () => {
+    setLayouts([...layouts, layouts.length]);
+  };
 
+  const removeLayout = () => {
+    if (layouts.length > 1) {
+      setLayouts(layouts.slice(0, -1));
+    }
+  };
+
+  // Years List Generation
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: currentYear - 2000 + 1 }, (_, i) => 2000 + i);
+
+  // Handlers for Button Active State
+  const handleButtonClick = (value: string) => {
+    if (value === buttonActive) {
+      return;
+    }
+    setButtonActive(value);
+  };
+
+// // 
+// const ToggleEditInputFields = () => {
+//   const [isEditMode, setIsEditMode] = useState(false);
+
+//   const handleToggleChange = () => {
+//     setIsEditMode((prev) => {
+//       if (!prev) {
+//         const alertElement = document.createElement('div');
+//         alertElement.className = 'p-4 mb-4 text-sm text-white rounded-xl bg-green-500 opacity-90 font-normal fixed top-0 left-1/2 transform -translate-x-1/2';
+//         alertElement.setAttribute('role', 'alert');
+//         alertElement.innerHTML = '<span class="font-semibold mr-2">Edit mode: ON</span>'
+        
+//         document.body.appendChild(alertElement);
+//         setTimeout(() => {
+//           document.body.removeChild(alertElement);
+//         }, 2000);
+//       }
+//       return !prev;
+//     });
+//   };
+
+// const [isContentVisible, setContentVisible] = useState(false);
+
+  
+//   const handleToggle = () => {
+//     setContentVisible(prevState => !prevState);
+//   };
+
+
+//   const [fields, setFields] = useState<string[]>([""]); // เริ่มต้นด้วย input field 1 ช่อง
+
+//   // ฟังก์ชันเพิ่ม input field
+//   const handleAddField = () => {
+//     setFields([...fields, ""]); // เพิ่มค่าเปล่าเข้าไปใน Array
+//   };
+
+//   // ฟังก์ชันลบ input field
+//   const handleRemoveField = (index: number) => {
+//     setFields(fields.filter((_, i) => i !== index)); // ลบค่าใน index ที่เลือก
+//   };
+
+//   const handleFocusOut = (event: React.FocusEvent<HTMLInputElement>) => {
+//     if (isEditMode) {
+//       event.target.readOnly = true;
+//       setTimeout(() => {
+//         event.target.readOnly = false;
+//       }, 0);
+//     }
+//   };
+
+
+
+//   const [rows, setRows] = useState([
+//     { dropdown: ["1", "2", "3", "4"], input: "" },
+//   ]);
+
+//   const handleAddRow = () => {
+//     setRows([...rows, { dropdown: ["1", "2", "3", "4"], input: "" }]);
+//   };
+
+//   const handleRemoveRow = () => {
+//     if (rows.length > 1) {
+//       setRows(rows.slice(0, -1));
+//     }
+//   };
+
+ 
+//     const [buttonActive, setButtonActive] = useState("tab1");
+  
+//     const handleButtonClick = (value: string) => {
+//       if (value === buttonActive) {
+//         return;
+//       }
+//       setButtonActive(value);
+//     };
+
+
+//       const [layouts, setLayouts] = useState([0]); 
+    
+//       const addLayout = () => {
+//         setLayouts([...layouts, layouts.length]); 
+//       };
+    
+//       const removeLayout = () => {
+//         if (layouts.length > 1) {
+//           setLayouts(layouts.slice(0, -1)); 
+//         };
+//        }
+
+//        const currentYear = new Date().getFullYear();
+//        const years = Array.from({ length: currentYear - 2000 + 1 }, (_, i) => 2000 + i);
 
   return (
     <div className="bg-slate-100 w-full">
@@ -188,7 +287,7 @@ const ToggleEditInputFields = () => {
 
         </div>
 
-        <div className="grid grid-cols-1 bg-slate-50 shadow-inner rounded-xl border-2 border-inner shadow-zinc-500/49 shadow-innerfirst-line:border-zine-500" >
+        <div className="grid grid-cols-1 bg-slate-50 shadow-inner rounded-xl border-2 border-inner shadow-zinc-500/49 shadow-innermost-line:border-zine-500" >
              <div className="w-full flex flex-col items-start shadow-blue-500/40 text-xs decoration-transparent">
 
 
@@ -238,8 +337,8 @@ const ToggleEditInputFields = () => {
     
       <div className="w-full bg-white mx-auto">
   <div className="border-t-8 border-sky-500 rounded-xl shadow-slate-300 shadow-inner">
-    <div className="flex flex-wrap ">
-    <TETabs className="shadow-xl rounded-lg w-full font-semibold bg-slate-100">
+    <div className="flex flex-wrap">
+    <TETabs className="shadow-xl rounded-lg w-full font-semibold bg-slate-100 py-2 mx-2">
         <TETabsItem
           onClick={() => handleButtonClick("tab1")}
           active={buttonActive === "tab1"}
@@ -266,18 +365,12 @@ const ToggleEditInputFields = () => {
           active={buttonActive === "tab4"}
           tag="button"
         >
-          TEST
+          EMAIL
         </TETabsItem>
-        <TETabsItem
-          onClick={() => handleButtonClick("tab5")}
-          active={buttonActive === "tab5"}
-          tag="button"
-        >
-          CV
-        </TETabsItem>
+
         
 
-    <ul className="flex items-center ml-auto justify-end space-x-3">
+    <ul className="flex items-center ml-auto justify-end space-x-2 sm:justify-around sm:w-full">
     <label className="relative inline-block w-16 h-5 ml-auto text-xs font-thin mt-1">
 
       
@@ -327,7 +420,8 @@ title="toggle"
 </div>
 </div>
 
-
+<TETabsContent>
+<TETabsPane show={buttonActive === "tab1"}>
 
         <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
           <span className="text-green-500">
@@ -337,11 +431,9 @@ title="toggle"
             Profiles</span>
             </div>
 
-
+            
    
-    <TETabsContent>
-        <TETabsPane show={buttonActive === "tab1"}>
-         
+    
     
   <div className="grid grid-cols-1 md:grid-cols-2 mx-2 font-thin text-md md:text-sm sm:text-md divide-x-2">
   <div className="flex items-center px-6 py-4 m-2 w-full divide-x">
@@ -506,8 +598,6 @@ title="toggle"
   </div>
   </div>   
   
-     </TETabsPane>
-      </TETabsContent>  
 
 
   <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
@@ -518,6 +608,8 @@ title="toggle"
           {isContentVisible ? 'Hide' : 'Show'} Full Information
         </button>
       </div>
+
+      
 
             {isContentVisible && (
               <>
@@ -715,16 +807,246 @@ title="toggle"
         </div>
       ))}
 
-    </div>
-    </>
-            )
-          }
-    </div>
-    </div>
-</div>
 </div>
 
- 
+    </>
+    
+            )
+          }
+      
+      </TETabsPane>
+      </TETabsContent> 
+        
+
+        
+         
+   
+
+
+          <TETabsContent>
+<TETabsPane show={buttonActive === "tab2"}>
+
+
+
+         <div className="flex items-center font-semibold text-gray-900 leading-8">
+          <span className="text-green-500">
+          <FcMindMap   className="w-8 h-8 m-2" />
+          </span>
+          <span className="tracking-wide">
+          Experience</span>
+          <div className="flex ml-auto mx-9 gap-4">
+          <button
+            title="addexp"
+            type="button"
+          onClick={addLayout}
+        >
+          <BsPlusSquare className='h-5 w-5'/>
+        </button>
+        <button
+        title="delexp"
+        type="button"
+          onClick={removeLayout}
+        >
+      <BsDashSquare className='h-5 w-5'/>
+        </button></div>
+      </div>
+
+
+
+
+
+            <div>
+
+
+      {/* Render Layouts */}
+      {layouts.map((layout, index) => (
+        <div
+          key={index}
+          className="flex flex-wrap md:flex-nowrap"
+        >
+          {/* Column ซ้าย */}
+          <div className="w-full md:w-1/3 space-y-2 shadow-xl m-2 rounded-md">
+            <div className="p-2"> 
+              
+               <label className="text-gray-500 text-xs">COMPANY</label>
+    <div className="flex flex-grow justify-end w-full">
+    <input
+    name="company"
+    title="company"
+   className="text-right flex flex-grow focus:outline-none"
+    defaultValue=""
+    readOnly={!isEditMode}
+    onBlur={handleFocusOut}
+  /></div></div>
+            <div className="p-2">  
+              
+              <label className="text-gray-500 text-xs">POSITION</label>
+    <div className="flex flex-grow justify-end w-full">
+    <input
+    name="position"
+    title="position"
+   className="text-right flex flex-grow focus:outline-none"
+    defaultValue=""
+    readOnly={!isEditMode}
+    onBlur={handleFocusOut}
+  /></div></div>
+            <div className="flex flex-row justify-end">
+
+            
+            <select name="frommonth"
+            title="frommonth"
+            className="border border-gray-300 rounded-xl text-gray-700 focus:outline-none">
+  <option value="" disabled>
+    Month
+  </option>            
+  <option value="jan">Jan</option>
+  <option value="feb">Feb</option>
+  <option value="mar">Mar</option>
+  <option value="apr">Apr</option>
+  <option value="may">May</option>
+  <option value="jun">Jun</option>
+  <option value="jul">Jul</option>
+  <option value="aug">Aug</option>
+  <option value="sep">Sep</option>
+  <option value="oct">Oct</option>
+  <option value="nov">Nov</option>
+  <option value="dec">Dec</option>
+</select>
+
+<select name="fromyear"
+title="fromyear"
+className="border border-gray-300 rounded-xl text-gray-700">
+  <option value="" disabled>
+    Year
+  </option>
+      {years.map((year) => (
+        
+        <option key="{year}" value="{year}">
+          {year}
+        </option>
+      ))}
+    </select>
+            <label className="m-2">-</label>
+    <select name="tomonth"
+            title="tomonth"
+            className="border border-gray-300 rounded-xl text-gray-700">
+  <option value="" disabled>
+    Month
+  </option>            
+  <option value="jan">Jan</option>
+  <option value="feb">Feb</option>
+  <option value="mar">Mar</option>
+  <option value="apr">Apr</option>
+  <option value="may">May</option>
+  <option value="jun">Jun</option>
+  <option value="jul">Jul</option>
+  <option value="aug">Aug</option>
+  <option value="sep">Sep</option>
+  <option value="oct">Oct</option>
+  <option value="nov">Nov</option>
+  <option value="dec">Dec</option>
+</select>
+
+<select name="toyear"
+title="toyear"
+className="border border-gray-300 rounded-xl text-gray-700">
+  <option value="" disabled>
+    Year
+  </option>
+      {years.map((year) => (
+        
+        <option key="{year}" value="{year}">
+          {year}
+        </option>
+      ))}
+    </select>
+
+            </div>
+          </div>
+       
+          <div className="w-full md:w-2/3 rounded-xl shadow-xl">
+          <label className="text-gray-500 text-xs">
+            RESPONDSIBLE
+            </label>
+            <textarea
+            className="h-40 w-full bg-white text-md border border-none p-2" 
+            placeholder="No data of Job description">
+            </textarea>
+       
+          </div>
+        </div>
+      ))} 
+    </div>
+    </TETabsPane>
+    </TETabsContent>    
+
+
+    <TETabsContent>
+    <TETabsPane show={buttonActive === "tab3"}>
+    <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+          <span className="text-green-500">
+          <FcAudioFile className="w-8 h-8 m-2" />
+          </span> 
+          <span className="tracking-wide">
+            Files</span>
+
+            <button
+          onClick={handleAddRow}
+        >
+          <BsPlusSquare className='h-5 w-5'/>
+        </button>
+        <button
+          onClick={handleRemoveRow}
+          title="Remove Row"
+        >
+      <BsDashSquare className='h-5 w-5'/>
+        </button>
+
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 mx-2 font-thin text-md md:text-sm sm:text-md divide-x-2">
+            <div>       
+            <PreviewComponent/>
+            </div>
+            <div className="flex items-center px-6 py-4 m-2 w-full divide-x">       
+
+    <label htmlFor="dropzone-file" 
+    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
+        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+            </svg>
+            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+        </div>
+        <input id="dropzone-file" type="file" className="hidden" />
+    </label>
+</div>
+</div>
+      
+  
+    </TETabsPane>
+    </TETabsContent>
+
+
+
+    <TETabsContent>
+    <TETabsPane show={buttonActive === "tab4"}>
+  <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+  <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <option selected={true}>Choose a country</option>
+    <option value="US">United States</option>
+    <option value="CA">Canada</option>
+    <option value="FR">France</option>
+    <option value="DE">Germany</option>
+  </select>
+  
+  </TETabsPane>
+  </TETabsContent>
+    </div>
+    </div>
+    </div>
+    </div>
   );
 };
 

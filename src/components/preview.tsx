@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 type File = {
   id: number;
@@ -35,38 +36,61 @@ export default function PreviewComponent() {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>File Preview and Download</h1>
+    <div className="grid grid-cols-1 shadow-xl divide-x-2 rounded-md sm:rounded-lg w-full">
+    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead className="text-xs text-gray-700 uppercase bg-gray-50 flex justify-end">
+
       <button onClick={loadFiles} disabled={loading}>
-        🔄 Reload
+        🔄 Refresh
       </button>
       {loading ? (
         <p>Loading files...</p>
       ) : files && files.length > 0 ? (
         <ul>
           {files.map((file) => (
-            <li key={file.id} style={{ margin: "10px 0" }}>
-              <h3>{file.name}</h3>
-              <a
+            <li key={file.id}>
+            <tr>
+                <th scope="col" className="pr-60 py-4">
+                     Name
+                </th>
+                <th scope="col" className="p-4">
+                    Preview
+                </th>
+                <th scope="col" className="p-4">
+                    Download
+                </th>
+            </tr>
+            <tr>
+              <td>{file.name}</td>
+              <td>
+              <Link
                 href={file.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ marginRight: "10px" }}
               >
                 📄 Preview
-              </a>
-              <a
+              </Link>
+
+              </td>
+              <td>
+              <Link
                 href={file.url}
                 download={file.name}
               >
                 ⬇️ Download
-              </a>
+              </Link>
+
+              </td>
+            </tr>
             </li>
           ))}
         </ul>
       ) : (
         <p>No files found.</p>
       )}
-    </div>
+</thead>
+</table>
+</div>
   );
 }

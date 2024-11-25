@@ -1,9 +1,9 @@
-import ProfilePage from '@/components/Table3';
+import ToggleEditInputFields from '@/components/Table3';
 
 const Register = () => {
   return (
     <div>
-      <ProfilePage />
+      <ToggleEditInputFields />
     </div>
   );
 };

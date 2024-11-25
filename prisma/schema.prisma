@@ -61,3 +61,10 @@ model Product {
   level  String
   sold   Boolean @default(false)
 }
+
+model File {
+  id          Int      @id @default(autoincrement())
+  name        String
+  url         String   // URL หรือ Path ของไฟล์ที่เก็บในเซิร์ฟเวอร์หรือ Cloud Storage
+  createdAt   DateTime? @default(now())
+}
