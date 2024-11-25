@@ -6,7 +6,11 @@ import Image from 'next/image';
 import Link from 'next/link'; 
 import PreviewComponent from '@/components/preview';
 import { TETabs, TETabsContent, TETabsItem, TETabsPane } from "tw-elements-react";
+<<<<<<< HEAD
 import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating, FcMindMap, FcAudioFile, FcRight } from "react-icons/fc";
+=======
+import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating, FcMindMap  } from "react-icons/fc";
+>>>>>>> 8dd8265e5be77e4ad5879c2bfed2ba2b3bbecf5b
 import { BsDashSquare, BsPlusSquare } from "react-icons/bs";
 
 const ToggleEditInputFields = () => {
@@ -184,6 +188,19 @@ const ToggleEditInputFields = () => {
 
 //        const currentYear = new Date().getFullYear();
 //        const years = Array.from({ length: currentYear - 2000 + 1 }, (_, i) => 2000 + i);
+
+      const [layouts, setLayouts] = useState([0]); 
+    
+      const addLayout = () => {
+        setLayouts([...layouts, layouts.length]); 
+      };
+    
+      const removeLayout = () => {
+        if (layouts.length > 1) {
+          setLayouts(layouts.slice(0, -1)); 
+        };
+       }
+
 
   return (
     <div className="bg-slate-100 w-full">
@@ -365,7 +382,11 @@ const ToggleEditInputFields = () => {
           active={buttonActive === "tab4"}
           tag="button"
         >
+<<<<<<< HEAD
           EMAIL
+=======
+          TEST
+>>>>>>> 8dd8265e5be77e4ad5879c2bfed2ba2b3bbecf5b
         </TETabsItem>
 
         
@@ -808,6 +829,75 @@ title="toggle"
       ))}
 
 </div>
+<<<<<<< HEAD
+=======
+
+    </>
+    
+            )
+          }
+      
+      </TETabsPane>
+      </TETabsContent> 
+            </div>
+
+        
+         
+   
+          <TETabsContent>
+<TETabsPane show={buttonActive === "tab2"}>
+
+        <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+          <span className="text-green-500">
+          <FcMindMap className="w-8 h-8 m-2" />
+          </span>
+          <span className="tracking-wide">
+            Experience</span>
+            </div>
+         
+            <div>
+      <div className="mb-4 flex gap-4">
+        <button
+          onClick={addLayout}
+          className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+        >
+          +
+        </button>
+        <button
+          onClick={removeLayout}
+          className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+        >
+          -
+        </button>
+      </div>
+
+      {/* Render Layouts */}
+      {layouts.map((layout, index) => (
+        <div
+          key={index}
+          className="flex flex-wrap md:flex-nowrap mb-4 border border-gray-300"
+        >
+          {/* Column ซ้าย */}
+          <div className="w-full md:w-1/3 space-y-4">
+            <div className="bg-blue-300 p-4">Row 1 (Left Column)</div>
+            <div className="bg-blue-400 p-4">Row 2 (Left Column)</div>
+            <div className="bg-blue-500 p-4">Row 3 (Left Column)</div>
+          </div>
+          {/* Column ขวา */}
+          <div className="w-full md:w-2/3 bg-red-300 p-4">
+            Right Column (Large Row)
+          </div>
+        </div>
+      ))}
+    </div>
+    </TETabsPane>
+    </TETabsContent>    
+
+    </div>
+    </div>
+    </div>
+  
+>>>>>>> 8dd8265e5be77e4ad5879c2bfed2ba2b3bbecf5b
 
     </>
     
