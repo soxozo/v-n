@@ -6,15 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link'; 
 import PreviewComponent from '@/components/preview';
 import { TETabs, TETabsContent, TETabsItem, TETabsPane } from "tw-elements-react";
-<<<<<<< HEAD
 import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating, FcMindMap, FcAudioFile, FcRight } from "react-icons/fc";
-=======
-import { FcSalesPerformance, FcWorkflow, FcCancel, FcNext, FcVoicePresentation, FcReading, FcBarChart, FcRating, FcMindMap  } from "react-icons/fc";
->>>>>>> 8dd8265e5be77e4ad5879c2bfed2ba2b3bbecf5b
 import { BsDashSquare, BsPlusSquare } from "react-icons/bs";
 
 const ToggleEditInputFields = () => {
-  // State
   const [isEditMode, setIsEditMode] = useState(false);
   const [isContentVisible, setContentVisible] = useState(false);
   const [fields, setFields] = useState<string[]>([""]);
@@ -22,7 +17,6 @@ const ToggleEditInputFields = () => {
   const [buttonActive, setButtonActive] = useState("tab1");
   const [layouts, setLayouts] = useState([0]);
 
-  // Handlers for Edit Mode
   const handleToggleChange = () => {
     setIsEditMode((prev) => {
       if (!prev) {
@@ -40,12 +34,10 @@ const ToggleEditInputFields = () => {
     });
   };
 
-  // Handlers for Content Visibility
   const handleToggle = () => {
     setContentVisible((prevState) => !prevState);
   };
 
-  // Handlers for Input Fields
   const handleAddField = () => {
     setFields([...fields, ""]);
   };
@@ -63,7 +55,6 @@ const ToggleEditInputFields = () => {
     }
   };
 
-  // Handlers for Rows
   const handleAddRow = () => {
     setRows([...rows, { dropdown: ["1", "2", "3", "4"], input: "" }]);
   };
@@ -74,7 +65,6 @@ const ToggleEditInputFields = () => {
     }
   };
 
-  // Handlers for Layouts
   const addLayout = () => {
     setLayouts([...layouts, layouts.length]);
   };
@@ -85,11 +75,9 @@ const ToggleEditInputFields = () => {
     }
   };
 
-  // Years List Generation
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: currentYear - 2000 + 1 }, (_, i) => 2000 + i);
 
-  // Handlers for Button Active State
   const handleButtonClick = (value: string) => {
     if (value === buttonActive) {
       return;
@@ -163,7 +151,7 @@ const ToggleEditInputFields = () => {
 //     }
 //   };
 
- 
+
 //     const [buttonActive, setButtonActive] = useState("tab1");
   
 //     const handleButtonClick = (value: string) => {
@@ -189,17 +177,17 @@ const ToggleEditInputFields = () => {
 //        const currentYear = new Date().getFullYear();
 //        const years = Array.from({ length: currentYear - 2000 + 1 }, (_, i) => 2000 + i);
 
-      const [layouts, setLayouts] = useState([0]); 
+      // const [layouts, setLayouts] = useState([0]); 
     
-      const addLayout = () => {
-        setLayouts([...layouts, layouts.length]); 
-      };
+      // const addLayout = () => {
+      //   setLayouts([...layouts, layouts.length]); 
+      // };
     
-      const removeLayout = () => {
-        if (layouts.length > 1) {
-          setLayouts(layouts.slice(0, -1)); 
-        };
-       }
+      // const removeLayout = () => {
+      //   if (layouts.length > 1) {
+      //     setLayouts(layouts.slice(0, -1)); 
+      //   };
+      //  }
 
 
   return (
@@ -382,11 +370,7 @@ const ToggleEditInputFields = () => {
           active={buttonActive === "tab4"}
           tag="button"
         >
-<<<<<<< HEAD
           EMAIL
-=======
-          TEST
->>>>>>> 8dd8265e5be77e4ad5879c2bfed2ba2b3bbecf5b
         </TETabsItem>
 
         
@@ -829,8 +813,7 @@ title="toggle"
       ))}
 
 </div>
-<<<<<<< HEAD
-=======
+
 
     </>
     
@@ -893,27 +876,10 @@ title="toggle"
     </TETabsPane>
     </TETabsContent>    
 
-    </div>
-    </div>
-    </div>
-  
->>>>>>> 8dd8265e5be77e4ad5879c2bfed2ba2b3bbecf5b
-
-    </>
     
-            )
-          }
-      
-      </TETabsPane>
-      </TETabsContent> 
-        
+  
 
-        
-         
-   
-
-
-          <TETabsContent>
+<TETabsContent>
 <TETabsPane show={buttonActive === "tab2"}>
 
 
@@ -958,12 +924,12 @@ title="toggle"
           <div className="w-full md:w-1/3 space-y-2 shadow-xl m-2 rounded-md">
             <div className="p-2"> 
               
-               <label className="text-gray-500 text-xs">COMPANY</label>
+<label className="text-gray-500 text-xs">COMPANY</label>
     <div className="flex flex-grow justify-end w-full">
     <input
     name="company"
     title="company"
-   className="text-right flex flex-grow focus:outline-none"
+className="text-right flex flex-grow focus:outline-none"
     defaultValue=""
     readOnly={!isEditMode}
     onBlur={handleFocusOut}
@@ -975,7 +941,7 @@ title="toggle"
     <input
     name="position"
     title="position"
-   className="text-right flex flex-grow focus:outline-none"
+className="text-right flex flex-grow focus:outline-none"
     defaultValue=""
     readOnly={!isEditMode}
     onBlur={handleFocusOut}
@@ -1133,7 +1099,6 @@ className="border border-gray-300 rounded-xl text-gray-700">
   
   </TETabsPane>
   </TETabsContent>
-    </div>
     </div>
     </div>
     </div>
